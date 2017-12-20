@@ -92,7 +92,16 @@ public class Car {
         this.color = color;
     }
 
-    public void setRentable(boolean rentable) {
+    @Override
+	public String toString() {
+		return "Car [manufacture=" + manufacture + ", carName=" + carName
+				+ ", model=" + model + ", seats=" + seats + ", color=" + color
+				+ ", isRentable=" + isRentable + ", needFix=" + needFix
+				+ ", needService=" + needService + ", date=" + date
+				+ ", price=" + price + "]";
+	}
+
+	public void setRentable(boolean rentable) {
         isRentable = rentable;
     }
 
