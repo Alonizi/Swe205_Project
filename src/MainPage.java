@@ -4,16 +4,21 @@ import javax.swing.*;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.Insets;
 import java.awt.Font;
 import java.awt.Panel;
+import java.util.InputMismatchException;
 
 public class MainPage extends JFrame {
 	private JTextField txtSearchForCar;
 	JButton CartButton ;
 	JTextArea resultArea ;
+	DataBase db = new DataBase();
 
 	public MainPage() {
+		db.readDatabaseFiles();
 		getContentPane().setBackground(UIManager.getColor("ToolTip.background"));
 		getContentPane().setLayout(null);
 		
@@ -30,6 +35,12 @@ public class MainPage extends JFrame {
 		Account.add(Logout);
 		
 		txtSearchForCar = new JTextField();
+		txtSearchForCar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+txtSearchForCar.setText("");
+			}
+		});
 		txtSearchForCar.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtSearchForCar.setHorizontalAlignment(SwingConstants.CENTER);
 		txtSearchForCar.setText("search for car");
@@ -38,6 +49,32 @@ public class MainPage extends JFrame {
 		txtSearchForCar.setColumns(10);
 		
 		JButton Search = new JButton("Search");
+		Search.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent arg0) {
+			int i=1;
+				try{
+					int searchedModel= Integer.parseInt(txtSearchForCar.getText());
+					resultArea.setText("");
+					for(Car c : db.cars){
+						if(c.model == searchedModel )
+							resultArea.setText(resultArea.getText() +"\n"+(i++)+"- "+c.toString());
+					}
+					
+				}
+				catch(NumberFormatException nfe){
+					resultArea.setText("");
+
+					for(Car c : db.cars){
+						if(c.carName.contains(txtSearchForCar.getText()) || c.manufacture.contains(txtSearchForCar.getText()))
+							resultArea.setText(resultArea.getText() +"\n"+(i++)+"- "+c.toString());
+					}
+					
+					}
+			
+				
+			}
+		});
 		Search.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -70,9 +107,11 @@ public class MainPage extends JFrame {
 
 		panel.setLayout(null);
 		resultArea.setEditable(false);
-		//resultArea.setLineWrap(true);
-		
-		//resultArea.setText("adasdaslllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllldasdl\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\n\n\n\n\n\n\n\n\n\n\nasjdaosifjesdifffffffffffffffffffffffffffffffoeiwfjsodijfsdoifjdsofijdsofijsdofijsofisdjfodsijfdsoifjdsfos");
+		resultArea.setFont(new Font("Times New Roman", Font.BOLD, 22));
+		for(int i=0;i<db.cars.size();i++){
+			resultArea.setText(resultArea.getText()+"\n"+(i+1)+"- "+db.cars.get(i).toString()+"\n");
+			
+		}
 		JScrollPane scroll = new JScrollPane(resultArea);
 		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);

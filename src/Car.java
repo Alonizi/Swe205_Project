@@ -12,6 +12,7 @@ public class Car {
     boolean needService ;
     String date ;
     int price;
+    int CN;
 
     public Car(String manufacture , String carName , int model , int seats , String color , boolean isRentable ,
                boolean needFix , boolean needService , String date,int price)
@@ -26,12 +27,29 @@ public class Car {
         this.needService = needService ;
         this.date = date;
         this.price=price;
+        this.CN = -1;
 
     }
 
     //Getters
 
-    public String getManufacture() {
+    public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public int getCN() {
+		return CN;
+	}
+
+	public void setCN(int cN) {
+		CN = cN;
+	}
+
+	public String getManufacture() {
         return manufacture;
     }
 
@@ -94,11 +112,7 @@ public class Car {
 
     @Override
 	public String toString() {
-		return "Car [manufacture=" + manufacture + ", carName=" + carName
-				+ ", model=" + model + ", seats=" + seats + ", color=" + color
-				+ ", isRentable=" + isRentable + ", needFix=" + needFix
-				+ ", needService=" + needService + ", date=" + date
-				+ ", price=" + price + "]";
+		return  manufacture + "  ,"+ carName + " ,"+ model + " ," + color+" ---------CAR#: "+CN;
 	}
 
 	public void setRentable(boolean rentable) {

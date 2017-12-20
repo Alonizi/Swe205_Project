@@ -1,4 +1,5 @@
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
@@ -15,6 +16,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class LoginScreen  extends JFrame{
+	 static DataBase db = new DataBase();
+
 	private JTextField UsernameFeild;
 	private JPasswordField PasswordFeild;
 	public LoginScreen() {
@@ -50,13 +53,23 @@ public class LoginScreen  extends JFrame{
 		
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				MainPage x = new MainPage();
-						x.setVisible(true);
-						x.setSize(700, 700);
-				
+			
+			public void actionPerformed(ActionEvent arg0) {
+				boolean logged = false;
+				String username = UsernameFeild.getText();
+				String password = PasswordFeild.getText();
+				for(Account acc : db.accounts)
+					if(username.equalsIgnoreCase(acc.username) && password.equals(acc.password) ){
+						MainPage mp = new MainPage();
+						mp.setVisible(true);
+						mp.setSize(700,700);
+						logged = true;
+					}
+				if(!logged)
+				JOptionPane.showMessageDialog(new LoginScreen() ,"Wrong Account");
 			}
 		});
+		
 		btnLogin.setBounds(308, 550, 139, 52);
 		getContentPane().add(btnLogin);
 		
@@ -78,6 +91,8 @@ public class LoginScreen  extends JFrame{
 		setSize(1000,800);
 	}
 	public static void main(String[] args) {
+		db.readDatabaseFiles();
 		new LoginScreen().setVisible(true);
+		
 	}
 }

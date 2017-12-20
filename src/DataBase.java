@@ -42,6 +42,8 @@ public class DataBase {
 			System.out.println(mycarfile.next());
 			System.out.println(mycarfile.nextInt());*/
 		}
+		for( i=0;i<cars.size();i++)
+			cars.get(i).CN = (i+1);
 		
 		
 
