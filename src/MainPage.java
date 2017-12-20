@@ -34,7 +34,7 @@ txtSearchForCar.setText("");
 		});
 		txtSearchForCar.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtSearchForCar.setHorizontalAlignment(SwingConstants.CENTER);
-		txtSearchForCar.setText("search for car");
+		txtSearchForCar.setText("search for car by manufacture or name");
 		txtSearchForCar.setBounds(39, 148, 576, 32);
 		getContentPane().add(txtSearchForCar);
 		txtSearchForCar.setColumns(10);
@@ -105,11 +105,33 @@ txtSearchForCar.setText("");
 		ResultsPAnel.add(scroll);
 		
 		JButton HomeButton = new JButton("Home");
+		HomeButton.addActionListener(new ActionListener() {
+			
+			
+			public void actionPerformed(ActionEvent arg0) {
+				resultArea.setFont(new Font("Times New Roman", Font.BOLD, 22));
+				for(int i=0;i<db.cars.size();i++){
+					resultArea.setText(resultArea.getText()+"\n"+(i+1)+"- "+db.cars.get(i).toString()+"\n");
+					
+				}
+				Addtextindex.setText("Index");
+				txtSearchForCar.setText("search for car by manufacture or name");
+			}
+		});
 		HomeButton.setFont(new Font("Times New Roman", Font.ITALIC, 16));
 		HomeButton.setBounds(517, 0, 167, 75);
 		getContentPane().add(HomeButton);
 		
 		JButton CartButton = new JButton("Cart");
+		CartButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent arg0) {
+				userCart uc = new userCart();
+				uc.setVisible(true);
+				
+				
+			}
+		});
 		CartButton.setFont(new Font("Times New Roman", Font.ITALIC, 16));
 		CartButton.setBounds(189, 0, 167, 75);
 		getContentPane().add(CartButton);
@@ -132,14 +154,40 @@ txtSearchForCar.setText("");
 		
 		JMenuItem Logoutmenuitem = new JMenuItem("Logout");
 		mnAccount.add(Logoutmenuitem);
+		Logoutmenuitem.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+				
+				
+			}
+		});
+		
+	
 		
 		JButton ResetButton = new JButton("Reset");
+		ResetButton.addActionListener(new ActionListener() {
+			
+			
+			public void actionPerformed(ActionEvent arg0) {
+				resultArea.setFont(new Font("Times New Roman", Font.BOLD, 22));
+				for(int i=0;i<db.cars.size();i++){
+					resultArea.setText(resultArea.getText()+"\n"+(i+1)+"- "+db.cars.get(i).toString()+"\n");
+					
+				}		
+			}
+		});
 		ResetButton.setBounds(189, 197, 89, 41);
 		getContentPane().add(ResetButton);
 		
 		Addtextindex = new JTextField();
 		Addtextindex.setHorizontalAlignment(SwingConstants.CENTER);
 		Addtextindex.setText("Index");
+		Addtextindex.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0) {
+Addtextindex.setText("");
+			}
+		});
 		Addtextindex.setBounds(352, 219, 122, 19);
 		getContentPane().add(Addtextindex);
 		Addtextindex.setColumns(10);

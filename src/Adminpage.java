@@ -97,6 +97,13 @@ public class Adminpage extends JFrame{
 		getContentPane().add(adminAddress);
 		
 		JButton adminLogout = new JButton("Logout");
+		adminLogout.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+				
+			}
+		});
 		adminLogout.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		adminLogout.setBounds(592, 0, 92, 40);
 		getContentPane().add(adminLogout);
