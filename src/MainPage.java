@@ -1,6 +1,7 @@
 
 
 import javax.swing.*;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Insets;
@@ -10,6 +11,7 @@ import java.awt.Panel;
 public class MainPage extends JFrame {
 	private JTextField txtSearchForCar;
 	JButton CartButton ;
+	JTextArea resultArea ;
 
 	public MainPage() {
 		getContentPane().setBackground(UIManager.getColor("ToolTip.background"));
@@ -41,13 +43,17 @@ public class MainPage extends JFrame {
 			}
 		});
 		Search.setBounds(267, 198, 89, 41);
-		getContentPane().add(Search);
-		
+		/*getContentPane().*/add(Search);
+		resultArea = new JTextArea();
 		Panel ResultsPAnel = new Panel();
 		ResultsPAnel.setBackground(UIManager.getColor("ToggleButton.highlight"));
 		ResultsPAnel.setBounds(22, 269, 605, 428);
-		getContentPane().add(ResultsPAnel);
+		/*getContentPane().*/add(ResultsPAnel);
 		ResultsPAnel.setLayout(null);
+
+
+		
+		
 		
 		JLabel SearResultsLabel = new JLabel("Search Results :");
 		SearResultsLabel.setFont(new Font("Tahoma", Font.PLAIN, 19));
@@ -57,11 +63,20 @@ public class MainPage extends JFrame {
 		JLabel LinesLabel = new JLabel("---------------------------------------------------------------------------------------------------------------------------------------------------");
 		LinesLabel.setBounds(10, 64, 595, 14);
 		ResultsPAnel.add(LinesLabel);
-				Panel panel = new Panel();
-		panel.setBounds(0, 0, 476, 40);
-		getContentPane().add(panel);
-		panel.setLayout(null);
 		
+				Panel panel = new Panel();
+		panel.setLayout(null);
+		JScrollPane scroll = new JScrollPane(resultArea);
+		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		scroll.setBounds(0, 70, 600, 400);
+		ResultsPAnel.add(scroll);
+		
+		
+		
+		
+		
+		getContentPane().add(panel);
 		JButton MainButton = new JButton("Main");
 		MainButton.setOpaque(true);
 		MainButton.addActionListener(new ActionListener() {
