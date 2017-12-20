@@ -1,11 +1,9 @@
 
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.Insets;
-import java.awt.Font;
-import java.awt.Panel;
 
 public class MainPage extends JFrame {
 	private JTextField txtSearchForCar;
@@ -43,20 +41,35 @@ public class MainPage extends JFrame {
 		Search.setBounds(267, 198, 89, 41);
 		getContentPane().add(Search);
 		
-		Panel ResultsPAnel = new Panel();
-		ResultsPAnel.setBackground(UIManager.getColor("ToggleButton.highlight"));
+		JPanel ResultsPAnel = new JPanel();
+
+//		ResultsPAnel.setBackground(UIManager.getColor("ToggleButton.highlight"));
 		ResultsPAnel.setBounds(22, 269, 605, 428);
+		//getContentPane().add(ResultsPAnel);
+		//ResultsPAnel.setLayout(null);
+//		JTextArea resultsArea = new JTextArea(250,500);
+//		resultsArea.setText("HELLLO WORLDD ");
+//		ResultsPAnel.add(resultsArea);
+
+		JTextArea resulsTxtArea=new JTextArea(50,50);
+		JScrollPane scroll = new JScrollPane(resulsTxtArea);
+		scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		resulsTxtArea.setVisible(true);
+		ResultsPAnel.add(resulsTxtArea);
+		ResultsPAnel.add(scroll);
+//		resulsTxtArea.setVisible(true);
+
 		getContentPane().add(ResultsPAnel);
-		ResultsPAnel.setLayout(null);
+
+		//JLabel SearResultsLabel = new JLabel("Search Results :");
+		//SearResultsLabel.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		//SearResultsLabel.setBounds(24, 24, 149, 29);
+		//ResultsPAnel.add(SearResultsLabel);
 		
-		JLabel SearResultsLabel = new JLabel("Search Results :");
-		SearResultsLabel.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		SearResultsLabel.setBounds(24, 24, 149, 29);
-		ResultsPAnel.add(SearResultsLabel);
-		
-		JLabel LinesLabel = new JLabel("---------------------------------------------------------------------------------------------------------------------------------------------------");
-		LinesLabel.setBounds(10, 64, 595, 14);
-		ResultsPAnel.add(LinesLabel);
+		//JLabel LinesLabel = new JLabel("---------------------------------------------------------------------------------------------------------------------------------------------------");
+		//LinesLabel.setBounds(10, 64, 595, 14);
+		//ResultsPAnel.add(LinesLabel);
 				Panel panel = new Panel();
 		panel.setBounds(0, 0, 476, 40);
 		getContentPane().add(panel);
@@ -78,7 +91,7 @@ public class MainPage extends JFrame {
 		CartButton.setBounds(170, 2, 125, 40);
 		CartButton.setOpaque(true);
 		CartButton.setBorderPainted(false);
-		CartButton.addActionListener(new ButtonListener());
+		CartButton.addActionListener(new MainMenuListener());
 
 		panel.add(CartButton);
 		
@@ -99,12 +112,13 @@ public class MainPage extends JFrame {
 	}
 
 
-	public class ButtonListener implements ActionListener {
+	public class MainMenuListener implements ActionListener {
 		
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource() == CartButton) {
 				CartDialog cd = new CartDialog();
 				cd.setVisible(true);
+				
 			}
 
 
