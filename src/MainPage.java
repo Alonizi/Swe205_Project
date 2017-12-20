@@ -1,20 +1,16 @@
-import javax.swing.JFrame;
-import javax.swing.JMenuBar;
-import javax.swing.JButton;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
+import com.sun.deploy.jardiff.JarDiff;
+
+import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.UIManager;
 import java.awt.Insets;
 import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 import java.awt.Panel;
-import javax.swing.JLabel;
 
 public class MainPage extends JFrame {
 	private JTextField txtSearchForCar;
+	JButton CartButton ;
+
 	public MainPage() {
 		getContentPane().setBackground(UIManager.getColor("ToolTip.background"));
 		getContentPane().setLayout(null);
@@ -78,10 +74,11 @@ public class MainPage extends JFrame {
 
 		panel.add(MainButton);
 		
-		JButton CartButton = new JButton("Cart");
+		 CartButton = new JButton("Cart");
 		CartButton.setBounds(170, 2, 125, 40);
 		CartButton.setOpaque(true);
 		CartButton.setBorderPainted(false);
+		CartButton.addActionListener(new ButtonListener());
 
 		panel.add(CartButton);
 		
@@ -90,5 +87,27 @@ public class MainPage extends JFrame {
 		ReveiwsButton.setOpaque(true);
 		ReveiwsButton.setBorderPainted(false);
 		panel.add(ReveiwsButton);
+	}
+
+	public class CartDialog extends JDialog
+	{
+		public CartDialog()
+		{
+			setSize(300,300);
+
+		}
+	}
+
+
+	public class ButtonListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(e.getSource() == CartButton) {
+				CartDialog cd = new CartDialog();
+				cd.setVisible(true);
+			}
+
+
+		}
 	}
 }
