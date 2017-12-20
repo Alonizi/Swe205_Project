@@ -10,29 +10,20 @@ import java.awt.Insets;
 import java.awt.Font;
 import java.awt.Panel;
 import java.util.InputMismatchException;
+import java.awt.Component;
+import java.awt.Color;
 
 public class MainPage extends JFrame {
 	private JTextField txtSearchForCar;
-	JButton CartButton ;
 	JTextArea resultArea ;
 	DataBase db = new DataBase();
+	private JTextField Addtextindex;
 
 	public MainPage() {
+		setSize(700,700);
 		db.readDatabaseFiles();
 		getContentPane().setBackground(UIManager.getColor("ToolTip.background"));
 		getContentPane().setLayout(null);
-		
-		JMenu Account = new JMenu("Account");
-		Account.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		Account.setBackground(UIManager.getColor("ToolTip.background"));
-		Account.setBounds(480, 0, 155, 40);
-		getContentPane().add(Account);
-		
-		JMenuItem Settings = new JMenuItem("Settings");
-		Account.add(Settings);
-		
-		JMenuItem Logout = new JMenuItem("Logout");
-		Account.add(Logout);
 		
 		txtSearchForCar = new JTextField();
 		txtSearchForCar.addMouseListener(new MouseAdapter() {
@@ -80,7 +71,7 @@ txtSearchForCar.setText("");
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		Search.setBounds(267, 198, 89, 41);
+		Search.setBounds(49, 197, 89, 41);
 		getContentPane().add(Search);
 		resultArea = new JTextArea();
 		Panel ResultsPAnel = new Panel();
@@ -101,12 +92,6 @@ txtSearchForCar.setText("");
 		JLabel LinesLabel = new JLabel("");
 		LinesLabel.setBounds(10, 64, 595, 14);
 		ResultsPAnel.add(LinesLabel);
-		
-				Panel panel = new Panel();
-				  panel.setBounds(0, 0, 476, 40); 
-				    getContentPane().add(panel); 
-
-		panel.setLayout(null);
 		resultArea.setEditable(false);
 		resultArea.setFont(new Font("Times New Roman", Font.BOLD, 22));
 		for(int i=0;i<db.cars.size();i++){
@@ -119,36 +104,49 @@ txtSearchForCar.setText("");
 		scroll.setBounds(0, 0, 599, 415);
 		ResultsPAnel.add(scroll);
 		
+		JButton HomeButton = new JButton("Home");
+		HomeButton.setFont(new Font("Times New Roman", Font.ITALIC, 16));
+		HomeButton.setBounds(517, 0, 167, 75);
+		getContentPane().add(HomeButton);
 		
+		JButton CartButton = new JButton("Cart");
+		CartButton.setFont(new Font("Times New Roman", Font.ITALIC, 16));
+		CartButton.setBounds(189, 0, 167, 75);
+		getContentPane().add(CartButton);
 		
+		JButton ReviewButton = new JButton("Review");
+		ReviewButton.setFont(new Font("Times New Roman", Font.ITALIC, 16));
+		ReviewButton.setBounds(352, 0, 167, 75);
+		getContentPane().add(ReviewButton);
 		
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBounds(0, 0, 69, 22);
+		getContentPane().add(menuBar);
 		
-		getContentPane().add(panel);
-		JButton MainButton = new JButton("Main");
-		MainButton.setOpaque(true);
-		MainButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		MainButton.setBackground(UIManager.getColor("info"));
-		MainButton.setBounds(10, 2, 125, 38);
-		MainButton.setBorderPainted(false);
-
-		panel.add(MainButton);
+		JMenu mnAccount = new JMenu("Account");
+		mnAccount.setForeground(Color.BLUE);
+		menuBar.add(mnAccount);
 		
-		 CartButton = new JButton("Cart");
-		CartButton.setBounds(170, 2, 125, 40);
-		CartButton.setOpaque(true);
-		CartButton.setBorderPainted(false);
-		CartButton.addActionListener(new ButtonListener());
-
-		panel.add(CartButton);
+		JMenuItem Settingmenuitem = new JMenuItem("Setting");
+		mnAccount.add(Settingmenuitem);
 		
-		JButton ReveiwsButton = new JButton("Reviews");
-		ReveiwsButton.setBounds(316, 0, 135, 40);
-		ReveiwsButton.setOpaque(true);
-		ReveiwsButton.setBorderPainted(false);
-		panel.add(ReveiwsButton);
+		JMenuItem Logoutmenuitem = new JMenuItem("Logout");
+		mnAccount.add(Logoutmenuitem);
+		
+		JButton ResetButton = new JButton("Reset");
+		ResetButton.setBounds(189, 197, 89, 41);
+		getContentPane().add(ResetButton);
+		
+		Addtextindex = new JTextField();
+		Addtextindex.setHorizontalAlignment(SwingConstants.CENTER);
+		Addtextindex.setText("Index");
+		Addtextindex.setBounds(352, 219, 122, 19);
+		getContentPane().add(Addtextindex);
+		Addtextindex.setColumns(10);
+		
+		JButton AddButton = new JButton("Add");
+		AddButton.setBounds(510, 216, 89, 22);
+		getContentPane().add(AddButton);
 	}
 
 	public class CartDialog extends JDialog
@@ -159,19 +157,21 @@ txtSearchForCar.setText("");
 
 		}
 	}
-
-
-	public class ButtonListener implements ActionListener {
-		
-		public void actionPerformed(ActionEvent e) {
-			if(e.getSource() == CartButton) {
-				CartDialog cd = new CartDialog();
-				cd.setVisible(true);
+	private static void addPopup(Component component, final JPopupMenu popup) {
+		component.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
 			}
-
-
-		}
-
-
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			private void showMenu(MouseEvent e) {
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
 	}
 }
