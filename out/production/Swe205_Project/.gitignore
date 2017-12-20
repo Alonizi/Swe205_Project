@@ -1,4 +1,5 @@
 /Account.class
+/Bill.class
 /Car.class
 /LoginScreen$1.class
 /LoginScreen$2.class
@@ -7,5 +8,4 @@
 /MainPage$2.class
 /MainPage.class
 /PasswordHelpWindow.class
-/Bill.class
 /Payment.class
