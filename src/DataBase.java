@@ -92,11 +92,11 @@ public class DataBase {
 			accpw.print(acc.username + " "+ acc.password+ " "+acc.adress+ " "+acc.PaymentInfo+ " "+acc.type+"\n" );
 			}
 			for(Bill bill : bills){
-				billpw.print(bill.billNumber+ " "+bill.carname+ " "+bill.accountname+ " "+bill.daysRented+ " "+bill.totalPrice);
+				billpw.print(bill.billNumber+ " "+bill.carname+ " "+bill.accountname+ " "+bill.daysRented+ " "+bill.totalPrice+"\n");
 			}
-			carOutStream.close();
-			accOutStream.close();
-			billOutStream.close();
+			//carOutStream.close();
+			//accOutStream.close();
+			//billOutStream.close();
 			carpw.close();
 			accpw.close();
 			billpw.close();
@@ -107,6 +107,10 @@ public class DataBase {
 		catch (IOException ioe) {
 			System.out.println(ioe.getMessage());
 		}
+		cars.clear();
+		accounts.clear();
+		bills.clear();
+		readDatabaseFiles();
 		
 		
 	}
