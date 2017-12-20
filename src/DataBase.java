@@ -76,5 +76,39 @@ public class DataBase {
 			
 		}
 		}
+	public void updateDatabaseFiles(){
+		try{
+			FileOutputStream carOutStream = new FileOutputStream("cars.txt",false);
+			FileOutputStream accOutStream = new FileOutputStream("accounts.txt",false);
+			FileOutputStream billOutStream = new FileOutputStream("bills.txt",false);
+			PrintWriter carpw = new PrintWriter(carOutStream);
+			PrintWriter accpw = new PrintWriter(accOutStream);
+			PrintWriter billpw = new PrintWriter(billOutStream);
+			for(Car c : cars){
+			carpw.print(c.manufacture+" "+ c.carName + " "+ c.model+ " "+c.seats +" "+c.color +" "+c.isRentable +" "+ c.needFix+ " "+ c.needService +" "+ c.date + " "+ c.price+"\n");	
+				
+			}
+			for(Account acc: accounts){	
+			accpw.print(acc.username + " "+ acc.password+ " "+acc.adress+ " "+acc.PaymentInfo+ " "+acc.type+"\n" );
+			}
+			for(Bill bill : bills){
+				billpw.print(bill.billNumber+ " "+bill.carname+ " "+bill.accountname+ " "+bill.daysRented+ " "+bill.totalPrice);
+			}
+			carOutStream.close();
+			accOutStream.close();
+			billOutStream.close();
+			carpw.close();
+			accpw.close();
+			billpw.close();
+		}
+		catch(FileNotFoundException fnfe){
+			System.out.println(fnfe.getMessage());
+		}
+		catch (IOException ioe) {
+			System.out.println(ioe.getMessage());
+		}
+		
+		
+	}
 
 }

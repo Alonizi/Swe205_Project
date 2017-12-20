@@ -60,10 +60,17 @@ public class LoginScreen  extends JFrame{
 				String password = PasswordFeild.getText();
 				for(Account acc : db.accounts)
 					if(username.equalsIgnoreCase(acc.username) && password.equals(acc.password) ){
+						if(!username.equals("admin")){
 						MainPage mp = new MainPage();
 						mp.setVisible(true);
 						mp.setSize(700,700);
 						logged = true;
+						}
+						else{
+							Adminpage ap = new Adminpage();
+							ap.setVisible(true);
+							logged = true;
+						}
 					}
 				if(!logged)
 				JOptionPane.showMessageDialog(new LoginScreen() ,"Wrong Account");

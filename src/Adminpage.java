@@ -17,6 +17,14 @@ public class Adminpage extends JFrame{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		JButton adminCars = new JButton("Cars");
+		adminCars.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent arg0) {
+				Admincar ac = new Admincar();
+				ac.setVisible(true);
+				
+			}
+		});
 		adminCars.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 18));
 		adminCars.setBackground(Color.CYAN);
 		adminCars.setBounds(152, 104, 134, 100);
@@ -30,12 +38,29 @@ public class Adminpage extends JFrame{
 		getContentPane().add(adminReviews);
 		
 		JButton adminAccount = new JButton("Accounts");
+			adminAccount.addActionListener(new ActionListener() {
+				
+				public void actionPerformed(ActionEvent arg0) {
+					Adminaccount acc = new Adminaccount();
+					acc.setVisible(true);
+					
+					
+				}
+			});
 		adminAccount.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 18));
 		adminAccount.setBackground(Color.CYAN);
 		adminAccount.setBounds(152, 280, 134, 101);
 		getContentPane().add(adminAccount);
 		
 		JButton adminBills = new JButton("Bills");
+			adminBills.addActionListener(new ActionListener() {
+				
+				public void actionPerformed(ActionEvent arg0) {
+					Adminbills ab = new Adminbills();
+					ab.setVisible(true);
+					
+				}
+			});
 		adminBills.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 18));
 		adminBills.setForeground(Color.BLACK);
 		adminBills.setBackground(Color.CYAN);
@@ -61,12 +86,12 @@ public class Adminpage extends JFrame{
 		adminInfo.setBounds(307, 519, 92, 13);
 		getContentPane().add(adminInfo);
 		
-		JLabel adminName = new JLabel("xxxxx");
+		JLabel adminName = new JLabel("admin");
 		adminName.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		adminName.setBounds(74, 558, 55, 13);
 		getContentPane().add(adminName);
 		
-		JLabel adminAddress = new JLabel("yyyyy");
+		JLabel adminAddress = new JLabel("KFUPM_University");
 		adminAddress.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		adminAddress.setBounds(84, 597, 45, 13);
 		getContentPane().add(adminAddress);

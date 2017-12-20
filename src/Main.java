@@ -4,6 +4,7 @@ public class Main {
 		DataBase database = new DataBase();
 		database.readDatabaseFiles();
 		// Reading Cars
+		System.out.println("BEFORE MODIFYING---------------------------");
 		System.out.println("Cars:");
 		for(Car car : database.cars)
 		System.out.println(car);

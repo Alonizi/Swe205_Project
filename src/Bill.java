@@ -1,12 +1,12 @@
 
 public class Bill {
 	int billNumber;
-	private  Car car;
-	private  String carname;
-	private Account acc;
-	private String accountname;
-	private int daysRented;
-	private double totalPrice;
+	  Car car;
+	  String carname;
+	 Account acc;
+	 String accountname;
+	 int daysRented;
+	 double totalPrice;
 	
 	public Bill(int billNumber,String carname, String accountname, int daysRented, double totalPrice) {
 		this.billNumber = billNumber;
