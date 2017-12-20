@@ -46,17 +46,27 @@ public class MainPage extends JFrame {
 		Panel ResultsPAnel = new Panel();
 		ResultsPAnel.setBackground(UIManager.getColor("ToggleButton.highlight"));
 		ResultsPAnel.setBounds(22, 269, 605, 428);
-		getContentPane().add(ResultsPAnel);
+		add(ResultsPAnel);
 		ResultsPAnel.setLayout(null);
 		
-		JLabel SearResultsLabel = new JLabel("Search Results :");
-		SearResultsLabel.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		SearResultsLabel.setBounds(24, 24, 149, 29);
-		ResultsPAnel.add(SearResultsLabel);
+		JTextArea description = new JTextArea(5,20);
+		description.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
+		description.setLineWrap(true);
+		JScrollPane scroll = new JScrollPane(description);
+		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		ResultsPAnel.add(description);
 		
-		JLabel LinesLabel = new JLabel("---------------------------------------------------------------------------------------------------------------------------------------------------");
-		LinesLabel.setBounds(10, 64, 595, 14);
-		ResultsPAnel.add(LinesLabel);
+		
+		
+//		JLabel SearResultsLabel = new JLabel("Search Results :");
+//		SearResultsLabel.setFont(new Font("Tahoma", Font.PLAIN, 19));
+//		SearResultsLabel.setBounds(24, 24, 149, 29);
+//		ResultsPAnel.add(SearResultsLabel);
+//		
+//		JLabel LinesLabel = new JLabel("---------------------------------------------------------------------------------------------------------------------------------------------------");
+//		LinesLabel.setBounds(10, 64, 595, 14);
+//		ResultsPAnel.add(LinesLabel);
 				Panel panel = new Panel();
 		panel.setBounds(0, 0, 476, 40);
 		getContentPane().add(panel);
