@@ -11,9 +11,10 @@ public class Car {
     boolean needFix ;
     boolean needService ;
     String date ;
+    int price;
 
     public Car(String manufacture , String carName , int model , int seats , String color , boolean isRentable ,
-               boolean needFix , boolean needService , String date)
+               boolean needFix , boolean needService , String date,int price)
     {
         this.manufacture = manufacture ;
         this.carName = carName ;
@@ -24,6 +25,7 @@ public class Car {
         this.needFix = needFix ;
         this.needService = needService ;
         this.date = date;
+        this.price=price;
 
     }
 

@@ -1,16 +1,21 @@
 
 public class Bill {
-	private Car car;
+	int billNumber;
+	private  Car car;
+	private  String carname;
 	private Account acc;
+	private String accountname;
 	private int daysRented;
 	private double totalPrice;
 	
-	public Bill(Car car, Account acc, int daysRented, double totalPrice) {
-		this.car = car;
-		this.acc = acc;
+	public Bill(int billNumber,String carname, String accountname, int daysRented, double totalPrice) {
+		this.billNumber = billNumber;
+		this.carname = carname;
+		this.accountname = accountname;
 		this.daysRented = daysRented;
 		this.totalPrice = totalPrice;
 	}
+
 
 	public Car getCar() {
 		return car;
