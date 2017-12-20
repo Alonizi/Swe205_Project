@@ -42,5 +42,9 @@ public class Payment {
 		
 	}
 	
+	public String toString() {
+		return "The car " + car + " was rented by the person with the account: " + acc + " for the following number of days: " + daysRented; 
+	}
+	
 	
 }
