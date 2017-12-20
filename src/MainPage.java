@@ -39,7 +39,7 @@ public class MainPage extends JFrame {
 		getContentPane().add(txtSearchForCar);
 		txtSearchForCar.setColumns(10);
 		
-		JButton Search = new JButton("Seaech");
+		JButton Search = new JButton("Search");
 		Search.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
