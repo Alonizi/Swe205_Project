@@ -1,4 +1,9 @@
 
 *.class
 out/production/Swe205_Project/Bill.class
+<<<<<<< HEAD
 *.class
+=======
+
+out/
+>>>>>>> 89a4d48816b32c4e7785754791902e2ec2e42f57

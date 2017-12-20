@@ -23,6 +23,13 @@ public Account(String username, String password, String adress,
 	statusCnt = 0;
 	
 }
+@Override
+public String toString() {
+	return "Account [username=" + username + ", password=" + password
+			+ ", adress=" + adress + ", PaymentInfo=" + PaymentInfo + ", type="
+			+ type + ", carsRented=" + carsRented + ", isBanned=" + isBanned
+			+ ", statusCnt=" + statusCnt + "]";
+}
 public String getUsername() {
 	return username;
 }
