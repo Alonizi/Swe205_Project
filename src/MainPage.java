@@ -1,4 +1,4 @@
-import com.sun.deploy.jardiff.JarDiff;
+
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
@@ -35,7 +35,7 @@ public class MainPage extends JFrame {
 		getContentPane().add(txtSearchForCar);
 		txtSearchForCar.setColumns(10);
 		
-		JButton Search = new JButton("Seaech");
+		JButton Search = new JButton("Search");
 		Search.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -100,7 +100,7 @@ public class MainPage extends JFrame {
 
 
 	public class ButtonListener implements ActionListener {
-		@Override
+		
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource() == CartButton) {
 				CartDialog cd = new CartDialog();

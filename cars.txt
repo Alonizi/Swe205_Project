@@ -1,0 +1,11 @@
+Toyota Camry 2015 4 Black true false false 12/20/2017 300
+Ford ecosport 2017 5 Dark_Blue true false false 3/21/2017 450
+Toyota Yaris 2014 4 Green true false false 7/9/2017 300
+Daihatsu Terios 2016 6 Blue true false false 9/9/2017 450
+Mustang GT 2017 4 Grey true false false 4/12/2017 600
+Kia Picanto 2014 2 Yellow true false false 5/2/2017 250
+Hyundai Elantra 2016 4 Brown true false 8/24/2017 350
+Range_Rover Sport 2015 5 Black true false false 10/4/2017 500
+Honza Jazz 2014 4 Black true false false 6/6/2017 350
+GMC Avalanche 2017 8 Grey true false false 7/3/2017 600
+Ford Crown_Victoria 2015 4 White true false false 8/1/2017 400
