@@ -19,32 +19,59 @@ public class DataBase {
 	public void readDatabaseFiles(){
 		// TO BE DONE LATER ! 
 		try{
-		//	int i=0;
+		int i=0;
 		FileInputStream carinstream = new FileInputStream("cars.txt");
 		FileInputStream accountinstream = new FileInputStream("accounts.txt");
 		FileInputStream billinstream = new FileInputStream("bills.txt");
-		Scanner myfile = new Scanner(carinstream);
-		while(myfile.hasNext()){
-			cars.add(new Car(myfile.next(), myfile.next(), myfile.nextInt(), myfile.nextInt(), myfile.next(), myfile.nextBoolean(), myfile.nextBoolean(), myfile.nextBoolean(), myfile.next(),myfile.nextInt()));
+		Scanner mycarfile = new Scanner(carinstream);
+		Scanner myaccfile = new Scanner(accountinstream);
+		Scanner mybillfile = new Scanner(billinstream);
+		while(mycarfile.hasNext()){
+			cars.add(new Car(mycarfile.next(), mycarfile.next(), mycarfile.nextInt(), mycarfile.nextInt(), mycarfile.next(), mycarfile.nextBoolean(), mycarfile.nextBoolean(), mycarfile.nextBoolean(), mycarfile.next(),mycarfile.nextInt()));
+//i++;
+//System.out.println(i);
 			
+/*			System.out.println(mycarfile.next());
+			System.out.println(mycarfile.next());
+			System.out.println(mycarfile.nextInt());
+			System.out.println(mycarfile.nextInt());
+			System.out.println(mycarfile.next());
+			System.out.println(mycarfile.nextBoolean());
+			System.out.println(mycarfile.nextBoolean());
+			System.out.println(mycarfile.nextBoolean());
+			System.out.println(mycarfile.next());
+			System.out.println(mycarfile.nextInt());*/
 		}
-		carinstream.close();
-		myfile = new Scanner(accountinstream);
-		while(myfile.hasNext()){
+		
+		
+
+		while(myaccfile.hasNext()){
 			
-		accounts.add(new Account(myfile.next(), myfile.next(), myfile.next(), myfile.next(), myfile.next()));
+	
+			accounts.add(new Account(myaccfile.next(), myaccfile.next(), myaccfile.next(), myaccfile.next(), myaccfile.next()));
 		}
-		accountinstream.close();
-		myfile = new Scanner(billinstream);
-		while(myfile.hasNext()){
+		
+		
+		while(mybillfile.hasNext()){
 			
-		bills.add(new Bill(myfile.nextInt(), myfile.next(), myfile.next(), myfile.nextInt(), myfile.nextDouble()));	
+		bills.add(new Bill(mybillfile.nextInt(), mybillfile.next(), mybillfile.next(), mybillfile.nextInt(), mybillfile.nextDouble()));	
 
 		}
 		billinstream.close();
+		mybillfile.close();
+		carinstream.close();
+		mycarfile.close();
+		accountinstream.close();
+		myaccfile.close();
+		
 		}
-		catch(Exception e){
-			System.out.println(e.getMessage());
+		catch(FileNotFoundException e){
+
+			System.out.println("File Not Found");
+		}
+		catch (IOException ioe){
+			System.out.println("IO Exception");
+			
 		}
 		}
 
