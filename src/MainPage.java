@@ -85,39 +85,14 @@ txtSearchForCar.setText("");
 		resultArea = new JTextArea();
 		Panel ResultsPAnel = new Panel();
 		ResultsPAnel.setBackground(UIManager.getColor("ToggleButton.highlight"));
-<<<<<<< HEAD
-		ResultsPAnel.setBounds(22, 269, 605, 428);
-		add(ResultsPAnel);
-=======
 		ResultsPAnel.setBounds(22, 269, 605, 415);
 		getContentPane().add(ResultsPAnel);
->>>>>>> 89a4d48816b32c4e7785754791902e2ec2e42f57
 		ResultsPAnel.setLayout(null);
 
 
 		
 		
 		
-<<<<<<< HEAD
-		JTextArea description = new JTextArea(5,20);
-		description.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
-		description.setLineWrap(true);
-		JScrollPane scroll = new JScrollPane(description);
-		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		ResultsPAnel.add(description);
-		
-		
-		
-//		JLabel SearResultsLabel = new JLabel("Search Results :");
-//		SearResultsLabel.setFont(new Font("Tahoma", Font.PLAIN, 19));
-//		SearResultsLabel.setBounds(24, 24, 149, 29);
-//		ResultsPAnel.add(SearResultsLabel);
-//		
-//		JLabel LinesLabel = new JLabel("---------------------------------------------------------------------------------------------------------------------------------------------------");
-//		LinesLabel.setBounds(10, 64, 595, 14);
-//		ResultsPAnel.add(LinesLabel);
-=======
 		JLabel SearResultsLabel = new JLabel("");
 		SearResultsLabel.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		SearResultsLabel.setBounds(24, 24, 149, 29);
@@ -127,7 +102,6 @@ txtSearchForCar.setText("");
 		LinesLabel.setBounds(10, 64, 595, 14);
 		ResultsPAnel.add(LinesLabel);
 		
->>>>>>> 89a4d48816b32c4e7785754791902e2ec2e42f57
 				Panel panel = new Panel();
 				  panel.setBounds(0, 0, 476, 40); 
 				    getContentPane().add(panel); 
