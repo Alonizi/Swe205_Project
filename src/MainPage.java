@@ -43,33 +43,40 @@ public class MainPage extends JFrame {
 			}
 		});
 		Search.setBounds(267, 198, 89, 41);
-		/*getContentPane().*/add(Search);
+		getContentPane().add(Search);
 		resultArea = new JTextArea();
 		Panel ResultsPAnel = new Panel();
 		ResultsPAnel.setBackground(UIManager.getColor("ToggleButton.highlight"));
-		ResultsPAnel.setBounds(22, 269, 605, 428);
-		/*getContentPane().*/add(ResultsPAnel);
+		ResultsPAnel.setBounds(22, 269, 605, 415);
+		getContentPane().add(ResultsPAnel);
 		ResultsPAnel.setLayout(null);
 
 
 		
 		
 		
-		JLabel SearResultsLabel = new JLabel("Search Results :");
+		JLabel SearResultsLabel = new JLabel("");
 		SearResultsLabel.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		SearResultsLabel.setBounds(24, 24, 149, 29);
 		ResultsPAnel.add(SearResultsLabel);
 		
-		JLabel LinesLabel = new JLabel("---------------------------------------------------------------------------------------------------------------------------------------------------");
+		JLabel LinesLabel = new JLabel("");
 		LinesLabel.setBounds(10, 64, 595, 14);
 		ResultsPAnel.add(LinesLabel);
 		
 				Panel panel = new Panel();
+				  panel.setBounds(0, 0, 476, 40); 
+				    getContentPane().add(panel); 
+
 		panel.setLayout(null);
+		resultArea.setEditable(false);
+		//resultArea.setLineWrap(true);
+		
+		//resultArea.setText("adasdaslllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllldasdl\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\n\n\n\n\n\n\n\n\n\n\nasjdaosifjesdifffffffffffffffffffffffffffffffoeiwfjsodijfsdoifjdsofijdsofijsdofijsofisdjfodsijfdsoifjdsfos");
 		JScrollPane scroll = new JScrollPane(resultArea);
 		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		scroll.setBounds(0, 70, 600, 400);
+		scroll.setBounds(0, 0, 599, 415);
 		ResultsPAnel.add(scroll);
 		
 		
