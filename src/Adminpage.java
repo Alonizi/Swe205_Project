@@ -17,6 +17,8 @@ import javax.swing.UIManager;
 
 public class Adminpage extends JFrame{
 	DataBase db = new DataBase();
+	 JTextArea CarTextArea;
+
 	public Adminpage() {
 		
 		getContentPane().setBackground(Color.ORANGE);
@@ -312,7 +314,6 @@ public class Adminpage extends JFrame{
 	 }
 	//this is a JDialog class
 	 class Admincar extends JDialog {
-		 JTextArea CarTextArea;
 		
 		private JTextField CarModTextField;
 		public Admincar() {
@@ -467,7 +468,13 @@ public class Adminpage extends JFrame{
 						int price = Integer.parseInt(PriceTextField.getText());
 						
 						db.cars.add(new Car(manufacturer, name, model, numSeats, color, true, false, false, date, price));
+						
 						db.updateDatabaseFiles();
+						CarTextArea.setText("");
+						for(int i=0;i<db.cars.size();i++){
+							CarTextArea.setText(CarTextArea.getText()+"\n"+(i+1)+"- "+db.cars.get(i).toString()+"\n");
+							
+						}
 						dispose();
 						
 					}

@@ -353,7 +353,7 @@ Addtextindex.setText("");
 						for(int j=0;j<cartCars.size();j++)
 							if(cartCars.get(j).CN == db.cars.get(i).CN) {
 								db.cars.get(i).isRentable = false;
-								db.bills.add(new Bill(db.bills.size()+1, cartCars.toString(), "Not Coded Yet", 1, computeFinalPrice));
+								//db.bills.add(new Bill(db.bills.size()+1, cartCars.toString(), "Not Coded Yet", 1, computeFinalPrice));
 							}
 				db.updateDatabaseFiles();
 				computePrice=0;
