@@ -15,8 +15,9 @@ import java.awt.Font;
 import javax.swing.UIManager;
 
 public class Adminpage extends JFrame{
-	
+	DataBase db = new DataBase();
 	public Adminpage() {
+		
 		getContentPane().setBackground(Color.ORANGE);
 		getContentPane().setLayout(null);
 		setSize(700,700);
@@ -99,7 +100,7 @@ public class Adminpage extends JFrame{
 		
 		JLabel adminAddress = new JLabel("KFUPM_University");
 		adminAddress.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		adminAddress.setBounds(84, 597, 45, 13);
+		adminAddress.setBounds(84, 597, 150, 19);
 		getContentPane().add(adminAddress);
 		
 		JButton adminLogout = new JButton("Logout");
@@ -120,10 +121,10 @@ public class Adminpage extends JFrame{
 	}
 	//this is a JDialog class
 	 class Adminaccount extends JDialog {
-		DataBase databacc = new DataBase();
+		 JTextArea AccTextArea;
 		private JTextField AccModTextField;
 		public Adminaccount() {
-			databacc.readDatabaseFiles();
+			db.readDatabaseFiles();
 			setSize(400,400);
 			setResizable(false);
 			getContentPane().setLayout(null);
@@ -134,24 +135,55 @@ public class Adminpage extends JFrame{
 			getContentPane().add(AccountLabel);
 			
 			JButton Accountadd = new JButton("Add");
+			Accountadd.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					AdminAccountAdd AddAcc =new AdminAccountAdd();
+					AddAcc.setVisible(true);
+					
+				}
+			});
 			Accountadd.setFont(new Font("Times New Roman", Font.ITALIC, 14));
 			Accountadd.setBackground(Color.GREEN);
 			Accountadd.setBounds(289, 81, 85, 21);
 			getContentPane().add(Accountadd);
 			
 			JButton Accountdelete = new JButton("Delete");
+			Accountdelete.addActionListener(new ActionListener() {
+
+				
+				public void actionPerformed(ActionEvent arg0) {
+					String CarNumber = AccModTextField.getText();
+					for(int i = 0; i < db.accounts.size(); i++) 
+						if(db.accounts.get(i).username.equalsIgnoreCase(CarNumber)) {
+							db.accounts.remove(i);
+						
+						}
+					db.updateDatabaseFiles();
+					AccTextArea.setText("");
+					for(int i=0;i<db.accounts.size();i++){
+						AccTextArea.setText(AccTextArea.getText()+"\n"+(i+1)+"- "+db.accounts.get(i).toString()+"\n");
+						
+					}
+							
+						
+					
+				}
+				
+			});
 			Accountdelete.setFont(new Font("Times New Roman", Font.ITALIC, 14));
 			Accountdelete.setBackground(Color.RED);
-			Accountdelete.setBounds(289, 122, 85, 21);
+			Accountdelete.setBounds(289, 190, 85, 21);
 			getContentPane().add(Accountdelete);
+//			
+//			JButton Accountmodify = new JButton("Modify");
+//			Accountmodify.setFont(new Font("Times New Roman", Font.ITALIC, 14));
+//			Accountmodify.setBackground(Color.YELLOW);
+//			Accountmodify.setBounds(289, 167, 85, 21);
+//			getContentPane().add(Accountmodify);
 			
-			JButton Accountmodify = new JButton("Modify");
-			Accountmodify.setFont(new Font("Times New Roman", Font.ITALIC, 14));
-			Accountmodify.setBackground(Color.YELLOW);
-			Accountmodify.setBounds(289, 167, 85, 21);
-			getContentPane().add(Accountmodify);
-			
-			JTextArea AccTextArea = new JTextArea();
+			AccTextArea = new JTextArea();
 			
 			AccTextArea.setEditable(false);
 			
@@ -160,8 +192,8 @@ public class Adminpage extends JFrame{
 			scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 			scroll.setBounds(10, 80, 248, 259);
 			getContentPane().add(scroll);
-			for(int i=0;i<databacc.accounts.size();i++){
-				AccTextArea.setText(AccTextArea.getText()+"\n"+(i+1)+"- "+databacc.accounts.get(i).toString()+"\n");
+			for(int i=0;i<db.accounts.size();i++){
+				AccTextArea.setText(AccTextArea.getText()+"\n"+(i+1)+"- "+db.accounts.get(i).toString()+"\n");
 				
 			}
 			
@@ -175,12 +207,81 @@ public class Adminpage extends JFrame{
 		
 
 	}
+	 public class AdminAccountAdd extends JDialog {
+			private JTextField AddUsernameTextField;
+			private JTextField AddPasswordTextField;
+			private JTextField AddPaymentMethodTextField;
+			private JTextField AddAddressTextfield;
+			private JTextField AddTypeTextField;
+			public AdminAccountAdd() {
+				getContentPane().setLayout(null);
+				setSize(400, 400);
+				setResizable(false);
+				JLabel AddUsernameLabel = new JLabel("Username");
+				AddUsernameLabel.setBounds(72, 78, 74, 13);
+				getContentPane().add(AddUsernameLabel);
+				
+				JLabel AddPasswordLabel = new JLabel("Password");
+				AddPasswordLabel.setBounds(72, 110, 74, 13);
+				getContentPane().add(AddPasswordLabel);
+				
+				JLabel AddPaymentMethodLabel = new JLabel("Payment Method");
+				AddPaymentMethodLabel.setBounds(72, 142, 115, 13);
+				getContentPane().add(AddPaymentMethodLabel);
+				
+				JLabel AddAdressLabel = new JLabel("Address");
+				AddAdressLabel.setBounds(72, 176, 74, 13);
+				getContentPane().add(AddAdressLabel);
+				
+				JLabel AdminAddLabel = new JLabel("Adding Account");
+				AdminAddLabel.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 16));
+				AdminAddLabel.setBounds(142, 10, 149, 19);
+				getContentPane().add(AdminAddLabel);
+				
+				AddUsernameTextField = new JTextField();
+				AddUsernameTextField.setBounds(197, 75, 154, 19);
+				getContentPane().add(AddUsernameTextField);
+				AddUsernameTextField.setColumns(10);
+				
+				AddPasswordTextField = new JTextField();
+				AddPasswordTextField.setBounds(197, 107, 154, 19);
+				getContentPane().add(AddPasswordTextField);
+				AddPasswordTextField.setColumns(10);
+				
+				AddPaymentMethodTextField = new JTextField();
+				AddPaymentMethodTextField.setBounds(197, 139, 154, 19);
+				getContentPane().add(AddPaymentMethodTextField);
+				AddPaymentMethodTextField.setColumns(10);
+				
+				AddAddressTextfield = new JTextField();
+				AddAddressTextfield.setBounds(197, 173, 154, 19);
+				getContentPane().add(AddAddressTextfield);
+				AddAddressTextfield.setColumns(10);
+				
+				JButton AdminAddAccountBtn = new JButton("Add");
+				AdminAddAccountBtn.setFont(new Font("Times New Roman", Font.ITALIC, 14));
+				AdminAddAccountBtn.setBounds(233, 267, 85, 21);
+				getContentPane().add(AdminAddAccountBtn);
+				
+				AddTypeTextField = new JTextField();
+				AddTypeTextField.setColumns(10);
+				AddTypeTextField.setBounds(197, 205, 154, 19);
+				getContentPane().add(AddTypeTextField);
+				
+				JLabel AddTypeLabel = new JLabel("Type");
+				AddTypeLabel.setBounds(72, 208, 74, 13);
+				getContentPane().add(AddTypeLabel);
+				setVisible(true);
+			}
+			
+	 }
 	//this is a JDialog class
 	 class Admincar extends JDialog {
-		DataBase datacar = new DataBase();
+		 JTextArea CarTextArea;
+		
 		private JTextField CarModTextField;
 		public Admincar() {
-			datacar.readDatabaseFiles();
+			db.readDatabaseFiles();
 			setSize(400,400);
 			setResizable(false);
 			getContentPane().setLayout(null);
@@ -191,36 +292,68 @@ public class Adminpage extends JFrame{
 			getContentPane().add(CarsTab);
 			
 			JButton CarsAdd = new JButton("Add");
+			CarsAdd.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					AdminAddCar AddCar =new AdminAddCar();
+					AddCar.setVisible(true);
+					
+				}
+			});
 			CarsAdd.setFont(new Font("Times New Roman", Font.ITALIC, 14));
 			CarsAdd.setBackground(Color.GREEN);
 			CarsAdd.setBounds(289, 81, 85, 21);
 			getContentPane().add(CarsAdd);
 			
 			JButton CarsDelete = new JButton("Delete");
+			CarsDelete.addActionListener(new ActionListener() {
+
+				
+				public void actionPerformed(ActionEvent arg0) {
+					int CarNumber = Integer.parseInt(CarModTextField.getText());
+					for(int i = 0; i < db.cars.size(); i++) 
+						if(db.cars.get(i).CN == CarNumber) {
+							db.cars.remove(i);
+						
+						}
+					db.updateDatabaseFiles();
+					CarTextArea.setText("");
+					for(int i=0;i<db.cars.size();i++){
+						CarTextArea.setText(CarTextArea.getText()+"\n"+(i+1)+"- "+db.cars.get(i).toString()+"\n");
+						
+					}
+							
+						
+					
+				}
+				
+			});
+			
 			CarsDelete.setFont(new Font("Times New Roman", Font.ITALIC, 14));
 			CarsDelete.setBackground(Color.RED);
 			CarsDelete.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 				}
 			});
-			CarsDelete.setBounds(289, 122, 85, 21);
+			CarsDelete.setBounds(289, 190, 85, 21);
 			getContentPane().add(CarsDelete);
 			
-			JButton CarsModify = new JButton("Modify");
-			CarsModify.setFont(new Font("Times New Roman", Font.ITALIC, 14));
-			CarsModify.setBackground(Color.YELLOW);
-			CarsModify.setBounds(289, 167, 85, 21);
-			getContentPane().add(CarsModify);
+//			JButton CarsModify = new JButton("Modify");
+//			CarsModify.setFont(new Font("Times New Roman", Font.ITALIC, 14));
+//			CarsModify.setBackground(Color.YELLOW);
+//			CarsModify.setBounds(289, 167, 85, 21);
+//			getContentPane().add(CarsModify);
 			
-			JTextArea CarTextArea = new JTextArea();
+			CarTextArea = new JTextArea();
 			CarTextArea.setEditable(false);
 			JScrollPane scroll = new JScrollPane(CarTextArea);
 			scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 			scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 			scroll.setBounds(10, 80, 248, 259);
 			getContentPane().add(scroll);
-			for(int i=0;i<datacar.cars.size();i++){
-				CarTextArea.setText(CarTextArea.getText()+"\n"+(i+1)+"- "+datacar.cars.get(i).toString()+"\n");
+			for(int i=0;i<db.cars.size();i++){
+				CarTextArea.setText(CarTextArea.getText()+"\n"+(i+1)+"- "+db.cars.get(i).toString()+"\n");
 				
 			}
 			
@@ -232,12 +365,99 @@ public class Adminpage extends JFrame{
 		}
 	
 	}
+	 public class AdminAddCar extends JDialog {
+			private JTextField ManufacturerTextField;
+			private JTextField NameTextField;
+			private JTextField ModelTextField;
+			private JTextField SeatsTextField;
+			private JTextField ColorTextField;
+			private JTextField DateTextField;
+			private JTextField PriceTextField;
+			public AdminAddCar() {
+				getContentPane().setLayout(null);
+				setSize(400, 400);
+				
+				JLabel LabelManufacturer = new JLabel("Manufacturer");
+				LabelManufacturer.setBounds(71, 78, 90, 13);
+				getContentPane().add(LabelManufacturer);
+				
+				JLabel labelName = new JLabel("Name");
+				labelName.setBounds(71, 110, 74, 13);
+				getContentPane().add(labelName);
+				
+				JLabel labelModel = new JLabel("Model");
+				labelModel.setBounds(71, 142, 115, 13);
+				getContentPane().add(labelModel);
+				
+				JLabel labelSeats = new JLabel("Seats");
+				labelSeats.setBounds(71, 176, 74, 13);
+				getContentPane().add(labelSeats);
+				
+				JLabel LabelAddingCar = new JLabel("Adding Car");
+				LabelAddingCar.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 16));
+				LabelAddingCar.setBounds(159, 10, 149, 19);
+				getContentPane().add(LabelAddingCar);
+				
+				ManufacturerTextField = new JTextField();
+				ManufacturerTextField.setColumns(10);
+				ManufacturerTextField.setBounds(196, 75, 154, 19);
+				getContentPane().add(ManufacturerTextField);
+				
+				NameTextField = new JTextField();
+				NameTextField.setColumns(10);
+				NameTextField.setBounds(196, 107, 154, 19);
+				getContentPane().add(NameTextField);
+				
+				ModelTextField = new JTextField();
+				ModelTextField.setColumns(10);
+				ModelTextField.setBounds(196, 139, 154, 19);
+				getContentPane().add(ModelTextField);
+				
+				SeatsTextField = new JTextField();
+				SeatsTextField.setColumns(10);
+				SeatsTextField.setBounds(196, 173, 154, 19);
+				getContentPane().add(SeatsTextField);
+				
+				JButton AddCarBtn = new JButton("Add");
+				AddCarBtn.setFont(new Font("Times New Roman", Font.ITALIC, 14));
+				AddCarBtn.setBounds(234, 304, 85, 21);
+				getContentPane().add(AddCarBtn);
+				
+				ColorTextField = new JTextField();
+				ColorTextField.setColumns(10);
+				ColorTextField.setBounds(196, 202, 154, 19);
+				getContentPane().add(ColorTextField);
+				
+				DateTextField = new JTextField();
+				DateTextField.setColumns(10);
+				DateTextField.setBounds(196, 236, 154, 19);
+				getContentPane().add(DateTextField);
+				
+				JLabel labelColor = new JLabel("Color");
+				labelColor.setBounds(71, 205, 115, 13);
+				getContentPane().add(labelColor);
+				
+				JLabel labelDate = new JLabel("Date");
+				labelDate.setBounds(71, 236, 74, 13);
+				getContentPane().add(labelDate);
+				
+				PriceTextField = new JTextField();
+				PriceTextField.setColumns(10);
+				PriceTextField.setBounds(196, 265, 154, 19);
+				getContentPane().add(PriceTextField);
+				
+				JLabel labelPrice = new JLabel("Price");
+				labelPrice.setBounds(71, 268, 74, 13);
+				getContentPane().add(labelPrice);
+				setVisible(true);
+			}
+			
+	 }
 	//this is a JDialog class
 	 class Adminbills extends JDialog {
-		 DataBase databill = new DataBase();
 		private JTextField BillModTextField;
 		public Adminbills() {
-			databill.readDatabaseFiles();
+			db.readDatabaseFiles();
 			setSize(400,400);
 			setResizable(false);
 			getContentPane().setLayout(null);
@@ -250,7 +470,7 @@ public class Adminpage extends JFrame{
 			JButton deleteBills = new JButton("Delete");
 			deleteBills.setFont(new Font("Times New Roman", Font.ITALIC, 14));
 			deleteBills.setBackground(Color.RED);
-			deleteBills.setBounds(289, 122, 85, 21);
+			deleteBills.setBounds(289, 190, 85, 21);
 			getContentPane().add(deleteBills);
 			
 			JTextArea BillTextArea = new JTextArea();
@@ -261,8 +481,8 @@ public class Adminpage extends JFrame{
 			scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 			scroll.setBounds(10, 80, 248, 259);
 			getContentPane().add(scroll);
-			for(int i=0;i<databill.bills.size();i++){
-				BillTextArea.setText(BillTextArea.getText()+"\n"+(i+1)+"- "+databill.bills.get(i).toString()+"\n");
+			for(int i=0;i<db.bills.size();i++){
+				BillTextArea.setText(BillTextArea.getText()+"\n"+(i+1)+"- "+db.bills.get(i).toString()+"\n");
 				
 			}
 			

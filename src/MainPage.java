@@ -12,17 +12,19 @@ import java.awt.Panel;
 import java.util.InputMismatchException;
 import java.awt.Component;
 import java.awt.Color;
+import java.util.ArrayList; 
 
 public class MainPage extends JFrame {
 	private JTextField txtSearchForCar;
+	
 	JTextArea resultArea ;
 	DataBase db = new DataBase();
 	private JTextField Addtextindex;
 	JTextArea textArea ;
 	userCart uc;
 	JLabel totalPrice, finalPrice, discountValue;
-	int computePrice = 0;
-
+	int computePrice = 0, computeFinalPrice = 0;
+	ArrayList<Car> cartCars= new ArrayList<Car>(); 
 	public MainPage() {
 		uc= new userCart();
 		setSize(700,700);
@@ -119,7 +121,7 @@ txtSearchForCar.setText("");
 					resultArea.setText(resultArea.getText()+"\n"+(i+1)+"- "+db.cars.get(i).toString()+"\n");
 					
 				}
-				Addtextindex.setText("Index");
+				Addtextindex.setText("add car number");
 				txtSearchForCar.setText("search for car by manufacture or name");
 			}
 		});
@@ -187,7 +189,7 @@ txtSearchForCar.setText("");
 		
 		Addtextindex = new JTextField();
 		Addtextindex.setHorizontalAlignment(SwingConstants.CENTER);
-		Addtextindex.setText("Index");
+		Addtextindex.setText("add car number");
 		Addtextindex.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
 Addtextindex.setText("");
@@ -197,6 +199,7 @@ Addtextindex.setText("");
 		getContentPane().add(Addtextindex);
 		Addtextindex.setColumns(10);
 		
+
 		JButton AddButton = new JButton("Add");
 		AddButton.addActionListener(new ActionListener() {
 			
@@ -205,29 +208,33 @@ Addtextindex.setText("");
 				uc.setVisible(true);
 		int CarNum = Integer.parseInt(Addtextindex.getText());
 			db.updateDatabaseFiles();
-			
+		/*	
 			for(int i=0;i<db.cars.size();i++) {
 				if(CarNum == db.cars.get(i).CN) {
 					textArea.setText(textArea.getText()+"\n"+db.cars.get(i).toString());
 					computePrice += db.cars.get(i).price;
 					totalPrice.setText("" + computePrice);
+					
+				}
+			}*/
+			for(int i=0;i<db.cars.size();i++) {
+				if(CarNum == db.cars.get(i).CN) {
+					cartCars.add(db.cars.get(i));
+			
+			textArea.setText(textArea.getText()+"\n"+db.cars.get(i).toString());
+				computePrice += db.cars.get(i).price;
+				totalPrice.setText("" + computePrice);
 				}
 			}
-				
+			computeFinalPrice = computePrice - (Integer.parseInt(discountValue.getText()) / 100); 
+			finalPrice.setText(computeFinalPrice+"");
 			}
 		});
 		AddButton.setBounds(510, 216, 89, 22);
 		getContentPane().add(AddButton);
 	}
+	
 
-	public class CartDialog extends JDialog
-	{
-		public CartDialog()
-		{
-			setSize(300,300);
-
-		}
-	}
 	private static void addPopup(Component component, final JPopupMenu popup) {
 		component.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
@@ -269,6 +276,29 @@ Addtextindex.setText("");
 			add(cartscroll);
 			
 			JButton deleteItem = new JButton("Delete");
+			deleteItem.addActionListener(new ActionListener() { 
+				 
+		        public void actionPerformed(ActionEvent arg0) { 
+		          int removeCarContent = Integer.parseInt(deleteTextArea.getText()); 
+		          for(int i=0 ; i< cartCars.size();i++) { 
+		            if(cartCars.get(i).CN == removeCarContent) { 
+		               
+		              cartCars.remove(cartCars.get(i)); 
+		            } 
+		          } 
+		          textArea.setText(" "); 
+		          computePrice=0; 
+		          for(int i=0;i<cartCars.size();i++) { 
+		          textArea.setText(textArea.getText()+"\n"+cartCars.get(i).toString()); 
+		          computePrice  += cartCars.get(i).price; 
+		          totalPrice.setText("" + computePrice); 
+		          } 
+		       
+		          computeFinalPrice = computePrice - (Integer.parseInt(discountValue.getText()) / 100);  
+		          finalPrice.setText(computeFinalPrice+"");          } 
+		           
+		     
+		      }); 
 			deleteItem.setFont(new Font("Times New Roman", Font.ITALIC, 14));
 			deleteItem.setBackground(Color.RED);
 			deleteItem.setBounds(289, 107, 85, 21);
@@ -283,7 +313,7 @@ Addtextindex.setText("");
 			labelTotal.setBounds(10, 289, 85, 13);
 			getContentPane().add(labelTotal);
 			
-			totalPrice = new JLabel("");
+			totalPrice = new JLabel("0");
 			totalPrice.setBounds(143, 289, 115, 13);
 			getContentPane().add(totalPrice);
 			
@@ -299,7 +329,7 @@ Addtextindex.setText("");
 			finalLabel.setBounds(10, 338, 85, 13);
 			getContentPane().add(finalLabel);
 			
-			finalPrice = new JLabel("zzzzzzzz");
+			finalPrice = new JLabel("0");
 			finalPrice.setBounds(143, 335, 115, 13);
 			getContentPane().add(finalPrice);
 			//setVisible(true);

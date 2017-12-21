@@ -25,10 +25,7 @@ public Account(String username, String password, String adress,
 }
 @Override
 public String toString() {
-	return "Account [username=" + username + ", password=" + password
-			+ ", adress=" + adress + ", PaymentInfo=" + PaymentInfo + ", type="
-			+ type + ", carsRented=" + carsRented + ", isBanned=" + isBanned
-			+ ", statusCnt=" + statusCnt + "]";
+	return "USERNAME: "+username+ "  PASSWORD: " + password + "  ADDRESS: " + adress  + " The user is a/an: " + type;
 }
 public String getUsername() {
 	return username;
