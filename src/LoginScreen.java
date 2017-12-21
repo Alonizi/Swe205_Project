@@ -13,6 +13,8 @@ import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.ActionEvent;
 
 public class LoginScreen  extends JFrame{
@@ -42,11 +44,91 @@ public class LoginScreen  extends JFrame{
 		getContentPane().add(lblPassword);
 		
 		UsernameFeild = new JTextField();
+		UsernameFeild.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode()== KeyEvent.VK_ENTER) {
+					boolean logged = false;
+					String username = UsernameFeild.getText();
+					String password = PasswordFeild.getText();
+					for(Account acc : db.accounts)
+						if(username.equalsIgnoreCase(acc.username) && password.equals(acc.password) ){
+							if(!username.equals("admin")){
+							MainPage mp = new MainPage();
+							mp.setVisible(true);
+							mp.setSize(700,700);
+							logged = true;
+							}
+							else{
+								Adminpage ap = new Adminpage();
+								ap.setVisible(true);
+								logged = true;
+							}
+						}
+					if(!logged)
+					JOptionPane.showMessageDialog(new LoginScreen() ,"Wrong Account");
+				}
+				
+			}
+		});
 		UsernameFeild.setBounds(290, 315, 330, 46);
 		getContentPane().add(UsernameFeild);
 		UsernameFeild.setColumns(10);
 		
 		PasswordFeild = new JPasswordField();
+		PasswordFeild.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode()== KeyEvent.VK_ENTER) {
+					boolean logged = false;
+					String username = UsernameFeild.getText();
+					String password = PasswordFeild.getText();
+					for(Account acc : db.accounts)
+						if(username.equalsIgnoreCase(acc.username) && password.equals(acc.password) ){
+							if(!username.equals("admin")){
+							MainPage mp = new MainPage();
+							mp.setVisible(true);
+							mp.setSize(700,700);
+							logged = true;
+							}
+							else{
+								Adminpage ap = new Adminpage();
+								ap.setVisible(true);
+								logged = true;
+							}
+						}
+					if(!logged)
+					JOptionPane.showMessageDialog(new LoginScreen() ,"Wrong Account");
+				}
+				
+			}
+		});
 		PasswordFeild.setBounds(297, 420, 323, 52);
 		getContentPane().add(PasswordFeild);
 		PasswordFeild.setColumns(10);
