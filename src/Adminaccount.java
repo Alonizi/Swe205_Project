@@ -5,7 +5,7 @@ import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-
+//this is a JDialog class
 public class Adminaccount extends JDialog {
 	private JTextField admintextarea;
 	public Adminaccount() {

@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-
+//this class is responsible for creating new accounts to be then added to the database system
 public class Account {
 String username;
 String password;
