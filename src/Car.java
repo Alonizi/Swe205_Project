@@ -1,6 +1,6 @@
-/**
- * Created by abdulazizalonizi on 12/20/17.
- */
+//this class is used to hold the car's information such as 
+//manufacture,name,model,number of seats,color, whether its rented or not, whether it needs a fix or a service 
+//the date the car is added,its price,and a unique identifier for each car  
 public class Car {
     String manufacture ;
     String carName ;

@@ -1,3 +1,5 @@
+// the cart class is responsible for temporarily holding the user's chosen cars before he proceed 
+// with the payment 
 
 public class Cart {
 private Car car;

@@ -1,4 +1,5 @@
-
+// this class is responsible for displaying the car's name, price, account's name, and days rented 
+// to the user after he completes his payment 
 public class Bill {
 	int billNumber;
 	  Car car;
