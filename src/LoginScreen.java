@@ -175,7 +175,8 @@ public class LoginScreen  extends JFrame{
 			}
 		});
 		lblForgotYouPassword.setForeground(Color.BLUE);
-		lblForgotYouPassword.setBounds(467, 392, 179, 25);
+		lblForgotYouPassword.setBounds(467, 392, 190, 25);
+		lblForgotYouPassword.setText("forgot you password?");
 		getContentPane().add(lblForgotYouPassword);
 		setSize(1000,800);
 	}
