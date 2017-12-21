@@ -18,8 +18,13 @@ public class MainPage extends JFrame {
 	JTextArea resultArea ;
 	DataBase db = new DataBase();
 	private JTextField Addtextindex;
+	JTextArea textArea ;
+	userCart uc;
+	JLabel totalPrice, finalPrice, discountValue;
+	int computePrice = 0;
 
 	public MainPage() {
+		uc= new userCart();
 		setSize(700,700);
 		db.readDatabaseFiles();
 		getContentPane().setBackground(UIManager.getColor("ToolTip.background"));
@@ -126,7 +131,7 @@ txtSearchForCar.setText("");
 		CartButton.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent arg0) {
-				userCart uc = new userCart();
+				 
 				uc.setVisible(true);
 				
 				
@@ -193,6 +198,24 @@ Addtextindex.setText("");
 		Addtextindex.setColumns(10);
 		
 		JButton AddButton = new JButton("Add");
+		AddButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				uc.setVisible(true);
+		int CarNum = Integer.parseInt(Addtextindex.getText());
+			db.updateDatabaseFiles();
+			
+			for(int i=0;i<db.cars.size();i++) {
+				if(CarNum == db.cars.get(i).CN) {
+					textArea.setText(textArea.getText()+"\n"+db.cars.get(i).toString());
+					computePrice += db.cars.get(i).price;
+					totalPrice.setText("" + computePrice);
+				}
+			}
+				
+			}
+		});
 		AddButton.setBounds(510, 216, 89, 22);
 		getContentPane().add(AddButton);
 	}
@@ -221,5 +244,64 @@ Addtextindex.setText("");
 				popup.show(e.getComponent(), e.getX(), e.getY());
 			}
 		});
+	}
+	class userCart extends JDialog {
+		private JTextField deleteTextArea;
+		public userCart() {
+			setSize(400,400);
+			setResizable(false);
+			getContentPane().setLayout(null);
+			
+			JLabel labelCart = new JLabel("Cart");
+			labelCart.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 18));
+			labelCart.setBounds(158, 10, 45, 13);
+			getContentPane().add(labelCart);
+			
+
+			 textArea = new JTextArea();
+			textArea.setBounds(10, 50, 248, 206);
+			JScrollPane scroll = new JScrollPane(resultArea);
+			scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+			scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+			getContentPane().add(textArea);
+			
+			JButton deleteItem = new JButton("Delete");
+			deleteItem.setFont(new Font("Times New Roman", Font.ITALIC, 14));
+			deleteItem.setBackground(Color.RED);
+			deleteItem.setBounds(289, 107, 85, 21);
+			getContentPane().add(deleteItem);
+			
+			deleteTextArea = new JTextField();
+			deleteTextArea.setColumns(10);
+			deleteTextArea.setBounds(278, 178, 96, 19);
+			getContentPane().add(deleteTextArea);
+			
+			JLabel labelTotal = new JLabel("Total price:");
+			labelTotal.setBounds(10, 289, 85, 13);
+			getContentPane().add(labelTotal);
+			
+			totalPrice = new JLabel("");
+			totalPrice.setBounds(143, 289, 115, 13);
+			getContentPane().add(totalPrice);
+			
+			JLabel discountLabel = new JLabel("Discount:");
+			discountLabel.setBounds(10, 312, 85, 13);
+			getContentPane().add(discountLabel);
+			
+			discountValue = new JLabel("0");
+			discountValue.setBounds(143, 312, 115, 13);
+			getContentPane().add(discountValue);
+			
+			JLabel finalLabel = new JLabel("Final price:");
+			finalLabel.setBounds(10, 338, 85, 13);
+			getContentPane().add(finalLabel);
+			
+			finalPrice = new JLabel("zzzzzzzz");
+			finalPrice.setBounds(143, 335, 115, 13);
+			getContentPane().add(finalPrice);
+			//setVisible(true);
+		}
+		
+
 	}
 }

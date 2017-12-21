@@ -112,7 +112,7 @@ public class Car {
 
     @Override
 	public String toString() {
-		return  manufacture + "  ,"+ carName + " ,"+ model + " ," + color+" ---------CAR#: "+CN;
+		return  manufacture + "  ,"+ carName + " ,"+ model + " ," + color+" ,"+price+" ---------CAR#: "+CN;
 	}
 
 	public void setRentable(boolean rentable) {
