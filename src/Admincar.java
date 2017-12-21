@@ -10,7 +10,7 @@ import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JScrollBar;
-
+//this is a JDialog class
 public class Admincar extends JDialog {
 	private JTextField AdminTextArea;
 	public Admincar() {
