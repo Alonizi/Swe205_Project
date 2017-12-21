@@ -51,6 +51,6 @@ public class Bill {
 	}
 	
 	public String toString() {
-		return " The car " + carname + " rented by the user: " + accountname + " was rented for " + daysRented + "days, and the total price is: " + totalPrice;
+		return "Bill Number: " + billNumber +  " The car " + carname + " rented by the user: " + accountname + " was rented for " + daysRented + "days, and the total price is: " + totalPrice;
 	}
 }

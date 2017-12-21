@@ -273,7 +273,7 @@ Addtextindex.setText("");
 			cartscroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 			cartscroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 			cartscroll.setBounds(10, 50, 248, 206);
-			add(cartscroll);
+			getContentPane().add(cartscroll);
 			
 			JButton deleteItem = new JButton("Delete");
 			deleteItem.addActionListener(new ActionListener() { 
@@ -332,8 +332,18 @@ Addtextindex.setText("");
 			finalPrice = new JLabel("0");
 			finalPrice.setBounds(143, 335, 115, 13);
 			getContentPane().add(finalPrice);
+			
+			JButton buyButton = new JButton("Buy");
+			buyButton.setBackground(Color.GREEN);
+			buyButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+				}
+			});
+			buyButton.setBounds(289, 319, 85, 21);
+			getContentPane().add(buyButton);
 			//setVisible(true);
 		}
+		
 		
 
 	}
