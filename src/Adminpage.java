@@ -6,6 +6,7 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -119,8 +120,10 @@ public class Adminpage extends JFrame{
 	}
 	//this is a JDialog class
 	 class Adminaccount extends JDialog {
-		private JTextField admintextarea;
+		DataBase databacc = new DataBase();
+		private JTextField AccModTextField;
 		public Adminaccount() {
+			databacc.readDatabaseFiles();
 			setSize(400,400);
 			setResizable(false);
 			getContentPane().setLayout(null);
@@ -148,14 +151,24 @@ public class Adminpage extends JFrame{
 			Accountmodify.setBounds(289, 167, 85, 21);
 			getContentPane().add(Accountmodify);
 			
-			JTextArea textArea = new JTextArea();
-			textArea.setBounds(10, 80, 248, 259);
-			getContentPane().add(textArea);
+			JTextArea AccTextArea = new JTextArea();
 			
-			admintextarea = new JTextField();
-			admintextarea.setColumns(10);
-			admintextarea.setBounds(278, 227, 96, 19);
-			getContentPane().add(admintextarea);
+			AccTextArea.setEditable(false);
+			
+			JScrollPane scroll = new JScrollPane(AccTextArea);
+			scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+			scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+			scroll.setBounds(10, 80, 248, 259);
+			getContentPane().add(scroll);
+			for(int i=0;i<databacc.accounts.size();i++){
+				AccTextArea.setText(AccTextArea.getText()+"\n"+(i+1)+"- "+databacc.accounts.get(i).toString()+"\n");
+				
+			}
+			
+			AccModTextField = new JTextField();
+			AccModTextField.setColumns(10);
+			AccModTextField.setBounds(278, 227, 96, 19);
+			getContentPane().add(AccModTextField);
 			setVisible(true);
 			
 		}
@@ -164,8 +177,10 @@ public class Adminpage extends JFrame{
 	}
 	//this is a JDialog class
 	 class Admincar extends JDialog {
-		private JTextField AdminTextArea;
+		DataBase datacar = new DataBase();
+		private JTextField CarModTextField;
 		public Admincar() {
+			datacar.readDatabaseFiles();
 			setSize(400,400);
 			setResizable(false);
 			getContentPane().setLayout(null);
@@ -197,22 +212,32 @@ public class Adminpage extends JFrame{
 			CarsModify.setBounds(289, 167, 85, 21);
 			getContentPane().add(CarsModify);
 			
-			JTextArea textArea = new JTextArea();
-			textArea.setBounds(10, 80, 248, 259);
-			getContentPane().add(textArea);
+			JTextArea CarTextArea = new JTextArea();
+			CarTextArea.setEditable(false);
+			JScrollPane scroll = new JScrollPane(CarTextArea);
+			scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+			scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+			scroll.setBounds(10, 80, 248, 259);
+			getContentPane().add(scroll);
+			for(int i=0;i<datacar.cars.size();i++){
+				CarTextArea.setText(CarTextArea.getText()+"\n"+(i+1)+"- "+datacar.cars.get(i).toString()+"\n");
+				
+			}
 			
-			AdminTextArea = new JTextField();
-			AdminTextArea.setBounds(278, 227, 96, 19);
-			getContentPane().add(AdminTextArea);
-			AdminTextArea.setColumns(10);
+			CarModTextField = new JTextField();
+			CarModTextField.setBounds(278, 227, 96, 19);
+			getContentPane().add(CarModTextField);
+			CarModTextField.setColumns(10);
 			setVisible(true);
 		}
 	
 	}
 	//this is a JDialog class
 	 class Adminbills extends JDialog {
-		private JTextField adminbilltextarea;
+		 DataBase databill = new DataBase();
+		private JTextField BillModTextField;
 		public Adminbills() {
+			databill.readDatabaseFiles();
 			setSize(400,400);
 			setResizable(false);
 			getContentPane().setLayout(null);
@@ -228,14 +253,23 @@ public class Adminpage extends JFrame{
 			deleteBills.setBounds(289, 122, 85, 21);
 			getContentPane().add(deleteBills);
 			
-			JTextArea textArea = new JTextArea();
-			textArea.setBounds(10, 80, 248, 259);
-			getContentPane().add(textArea);
+			JTextArea BillTextArea = new JTextArea();
+			BillTextArea.setEditable(false);
 			
-			adminbilltextarea = new JTextField();
-			adminbilltextarea.setColumns(10);
-			adminbilltextarea.setBounds(278, 227, 96, 19);
-			getContentPane().add(adminbilltextarea);
+			JScrollPane scroll = new JScrollPane(BillTextArea);
+			scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+			scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+			scroll.setBounds(10, 80, 248, 259);
+			getContentPane().add(scroll);
+			for(int i=0;i<databill.bills.size();i++){
+				BillTextArea.setText(BillTextArea.getText()+"\n"+(i+1)+"- "+databill.bills.get(i).toString()+"\n");
+				
+			}
+			
+			BillModTextField = new JTextField();
+			BillModTextField.setColumns(10);
+			BillModTextField.setBounds(278, 227, 96, 19);
+			getContentPane().add(BillModTextField);
 			setVisible(true);
 		}
 		
