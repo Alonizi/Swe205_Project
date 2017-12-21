@@ -6,6 +6,7 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -259,6 +260,40 @@ public class Adminpage extends JFrame{
 				AddAddressTextfield.setColumns(10);
 				
 				JButton AdminAddAccountBtn = new JButton("Add");
+				AdminAddAccountBtn.addActionListener(new ActionListener() {
+					
+					
+					public void actionPerformed(ActionEvent arg0) {
+						
+						String username = AddUsernameTextField.getText();
+						String password = AddPasswordTextField.getText();						
+						String paymentMethod = AddPaymentMethodTextField.getText();
+						String address = AddAddressTextfield.getText();
+						String type = AddTypeTextField.getText();
+						//AdminAccountAdd acad = 
+						boolean isAvailable = false;
+						for(int i = 0; i < db.accounts.size(); i++)
+							if(db.accounts.get(i).username.equalsIgnoreCase(username)) {
+								isAvailable=true;
+							}
+								
+						if (isAvailable) {
+							dispose();
+							AdminAccountAdd x = new AdminAccountAdd();
+							JOptionPane.showMessageDialog(x, "User already exists!");
+								x.dispose();
+						}
+						else {
+						db.accounts.add(new Account(username, password, address, paymentMethod, type));
+						db.updateDatabaseFiles();
+						dispose();
+
+						}
+						
+					}
+					
+				});
+
 				AdminAddAccountBtn.setFont(new Font("Times New Roman", Font.ITALIC, 14));
 				AdminAddAccountBtn.setBounds(233, 267, 85, 21);
 				getContentPane().add(AdminAddAccountBtn);
@@ -419,6 +454,25 @@ public class Adminpage extends JFrame{
 				getContentPane().add(SeatsTextField);
 				
 				JButton AddCarBtn = new JButton("Add");
+				AddCarBtn.addActionListener(new ActionListener() {
+					
+					
+					public void actionPerformed(ActionEvent arg0) {
+						String manufacturer = ManufacturerTextField.getText();
+						String name = NameTextField.getText();
+						int model = Integer.parseInt(ModelTextField.getText());
+						int numSeats = Integer.parseInt(SeatsTextField.getText());
+						String color = ColorTextField.getText();
+						String date = DateTextField.getText();
+						int price = Integer.parseInt(PriceTextField.getText());
+						
+						db.cars.add(new Car(manufacturer, name, model, numSeats, color, true, false, false, date, price));
+						db.updateDatabaseFiles();
+						dispose();
+						
+					}
+					
+				});
 				AddCarBtn.setFont(new Font("Times New Roman", Font.ITALIC, 14));
 				AddCarBtn.setBounds(234, 304, 85, 21);
 				getContentPane().add(AddCarBtn);
@@ -455,6 +509,7 @@ public class Adminpage extends JFrame{
 	 }
 	//this is a JDialog class
 	 class Adminbills extends JDialog {
+		 JTextArea BillTextArea;
 		private JTextField BillModTextField;
 		public Adminbills() {
 			db.readDatabaseFiles();
@@ -468,12 +523,34 @@ public class Adminpage extends JFrame{
 			getContentPane().add(billsLabel);
 			
 			JButton deleteBills = new JButton("Delete");
+			deleteBills.addActionListener(new ActionListener() {
+
+				
+				public void actionPerformed(ActionEvent arg0) {
+					int BillNumber = Integer.parseInt(BillModTextField.getText());
+					for(int i = 0; i < db.bills.size(); i++) 
+						if(db.bills.get(i).billNumber == BillNumber) {
+							db.bills.remove(i);
+						
+						}
+					db.updateDatabaseFiles();
+					BillTextArea.setText("");
+					for(int i=0;i<db.bills.size();i++){
+						BillTextArea.setText(BillTextArea.getText()+"\n"+(i+1)+"- "+db.bills.get(i).toString()+"\n");
+						
+					}
+							
+						
+					
+				}
+				
+			});
 			deleteBills.setFont(new Font("Times New Roman", Font.ITALIC, 14));
 			deleteBills.setBackground(Color.RED);
 			deleteBills.setBounds(289, 190, 85, 21);
 			getContentPane().add(deleteBills);
 			
-			JTextArea BillTextArea = new JTextArea();
+			BillTextArea = new JTextArea();
 			BillTextArea.setEditable(false);
 			
 			JScrollPane scroll = new JScrollPane(BillTextArea);
