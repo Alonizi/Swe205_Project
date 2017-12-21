@@ -17,6 +17,9 @@ public class DataBase {
 	}
 	
 	public void readDatabaseFiles(){
+		cars.clear();
+		accounts.clear();
+		bills.clear();
 		 
 		try{
 		int i=0;
