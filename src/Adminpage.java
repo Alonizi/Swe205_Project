@@ -1,9 +1,14 @@
 import javax.swing.JFrame;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.UIManager;
@@ -112,4 +117,130 @@ public class Adminpage extends JFrame{
 	public static void main(String[] args) {
 		new Adminpage();
 	}
+	//this is a JDialog class
+	 class Adminaccount extends JDialog {
+		private JTextField admintextarea;
+		public Adminaccount() {
+			setSize(400,400);
+			setResizable(false);
+			getContentPane().setLayout(null);
+			
+			JLabel AccountLabel = new JLabel("Account");
+			AccountLabel.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 18));
+			AccountLabel.setBounds(151, 10, 87, 13);
+			getContentPane().add(AccountLabel);
+			
+			JButton Accountadd = new JButton("Add");
+			Accountadd.setFont(new Font("Times New Roman", Font.ITALIC, 14));
+			Accountadd.setBackground(Color.GREEN);
+			Accountadd.setBounds(289, 81, 85, 21);
+			getContentPane().add(Accountadd);
+			
+			JButton Accountdelete = new JButton("Delete");
+			Accountdelete.setFont(new Font("Times New Roman", Font.ITALIC, 14));
+			Accountdelete.setBackground(Color.RED);
+			Accountdelete.setBounds(289, 122, 85, 21);
+			getContentPane().add(Accountdelete);
+			
+			JButton Accountmodify = new JButton("Modify");
+			Accountmodify.setFont(new Font("Times New Roman", Font.ITALIC, 14));
+			Accountmodify.setBackground(Color.YELLOW);
+			Accountmodify.setBounds(289, 167, 85, 21);
+			getContentPane().add(Accountmodify);
+			
+			JTextArea textArea = new JTextArea();
+			textArea.setBounds(10, 80, 248, 259);
+			getContentPane().add(textArea);
+			
+			admintextarea = new JTextField();
+			admintextarea.setColumns(10);
+			admintextarea.setBounds(278, 227, 96, 19);
+			getContentPane().add(admintextarea);
+			setVisible(true);
+			
+		}
+		
+
+	}
+	//this is a JDialog class
+	 class Admincar extends JDialog {
+		private JTextField AdminTextArea;
+		public Admincar() {
+			setSize(400,400);
+			setResizable(false);
+			getContentPane().setLayout(null);
+			
+			JLabel CarsTab = new JLabel("Cars");
+			CarsTab.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 18));
+			CarsTab.setBounds(171, 10, 45, 13);
+			getContentPane().add(CarsTab);
+			
+			JButton CarsAdd = new JButton("Add");
+			CarsAdd.setFont(new Font("Times New Roman", Font.ITALIC, 14));
+			CarsAdd.setBackground(Color.GREEN);
+			CarsAdd.setBounds(289, 81, 85, 21);
+			getContentPane().add(CarsAdd);
+			
+			JButton CarsDelete = new JButton("Delete");
+			CarsDelete.setFont(new Font("Times New Roman", Font.ITALIC, 14));
+			CarsDelete.setBackground(Color.RED);
+			CarsDelete.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+				}
+			});
+			CarsDelete.setBounds(289, 122, 85, 21);
+			getContentPane().add(CarsDelete);
+			
+			JButton CarsModify = new JButton("Modify");
+			CarsModify.setFont(new Font("Times New Roman", Font.ITALIC, 14));
+			CarsModify.setBackground(Color.YELLOW);
+			CarsModify.setBounds(289, 167, 85, 21);
+			getContentPane().add(CarsModify);
+			
+			JTextArea textArea = new JTextArea();
+			textArea.setBounds(10, 80, 248, 259);
+			getContentPane().add(textArea);
+			
+			AdminTextArea = new JTextField();
+			AdminTextArea.setBounds(278, 227, 96, 19);
+			getContentPane().add(AdminTextArea);
+			AdminTextArea.setColumns(10);
+			setVisible(true);
+		}
+	
+	}
+	//this is a JDialog class
+	 class Adminbills extends JDialog {
+		private JTextField adminbilltextarea;
+		public Adminbills() {
+			setSize(400,400);
+			setResizable(false);
+			getContentPane().setLayout(null);
+			
+			JLabel billsLabel = new JLabel("Bills");
+			billsLabel.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 18));
+			billsLabel.setBounds(171, 10, 45, 13);
+			getContentPane().add(billsLabel);
+			
+			JButton deleteBills = new JButton("Delete");
+			deleteBills.setFont(new Font("Times New Roman", Font.ITALIC, 14));
+			deleteBills.setBackground(Color.RED);
+			deleteBills.setBounds(289, 122, 85, 21);
+			getContentPane().add(deleteBills);
+			
+			JTextArea textArea = new JTextArea();
+			textArea.setBounds(10, 80, 248, 259);
+			getContentPane().add(textArea);
+			
+			adminbilltextarea = new JTextField();
+			adminbilltextarea.setColumns(10);
+			adminbilltextarea.setBounds(278, 227, 96, 19);
+			getContentPane().add(adminbilltextarea);
+			setVisible(true);
+		}
+		
+
+	}
+
+
 }
