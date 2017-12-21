@@ -14,7 +14,8 @@ import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.UIManager;
-
+// this class appears when an admin logs in from the login screen
+//this class is very cruicial as it gives the admin to the freedom to manage the inventory as he sees fit
 public class Adminpage extends JFrame{
 	DataBase db = new DataBase();
 	 JTextArea CarTextArea;
@@ -26,7 +27,7 @@ public class Adminpage extends JFrame{
 		setSize(700,700);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
-		JButton adminCars = new JButton("Cars");
+		JButton adminCars = new JButton("Cars");// this button shows the car JDialog for the admin
 		adminCars.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent arg0) {
@@ -47,7 +48,7 @@ public class Adminpage extends JFrame{
 		adminReviews.setBounds(368, 104, 134, 100);
 		getContentPane().add(adminReviews);
 		
-		JButton adminAccount = new JButton("Accounts");
+		JButton adminAccount = new JButton("Accounts");// this button opens the account JDialog
 			adminAccount.addActionListener(new ActionListener() {
 				
 				public void actionPerformed(ActionEvent arg0) {
@@ -122,7 +123,7 @@ public class Adminpage extends JFrame{
 	public static void main(String[] args) {
 		new Adminpage();
 	}
-	//this is a JDialog class
+	//this is a JDialog class that appears when the admin clicks the account button
 	 class Adminaccount extends JDialog {
 		 JTextArea AccTextArea;
 		private JTextField AccModTextField;
@@ -137,7 +138,7 @@ public class Adminpage extends JFrame{
 			AccountLabel.setBounds(151, 10, 87, 13);
 			getContentPane().add(AccountLabel);
 			
-			JButton Accountadd = new JButton("Add");
+			JButton Accountadd = new JButton("Add");// this button summons a new JDialog thats responsible for adding new accs
 			Accountadd.addActionListener(new ActionListener() {
 				
 				@Override
@@ -152,7 +153,7 @@ public class Adminpage extends JFrame{
 			Accountadd.setBounds(289, 81, 85, 21);
 			getContentPane().add(Accountadd);
 			
-			JButton Accountdelete = new JButton("Delete");
+			JButton Accountdelete = new JButton("Delete");// this button deletes the account thats written in the textfield
 			Accountdelete.addActionListener(new ActionListener() {
 
 				
@@ -210,7 +211,7 @@ public class Adminpage extends JFrame{
 		
 
 	}
-	 public class AdminAccountAdd extends JDialog {
+	 public class AdminAccountAdd extends JDialog {// this is the class that adds new accounts
 			private JTextField AddUsernameTextField;
 			private JTextField AddPasswordTextField;
 			private JTextField AddPaymentMethodTextField;
@@ -261,7 +262,7 @@ public class Adminpage extends JFrame{
 				getContentPane().add(AddAddressTextfield);
 				AddAddressTextfield.setColumns(10);
 				
-				JButton AdminAddAccountBtn = new JButton("Add");
+				JButton AdminAddAccountBtn = new JButton("Add"); // this is the button that execute the class's purpose
 				AdminAddAccountBtn.addActionListener(new ActionListener() {
 					
 					
@@ -312,7 +313,7 @@ public class Adminpage extends JFrame{
 			
 	 }
 	//this is a JDialog class
-	 class Admincar extends JDialog {
+	 class Admincar extends JDialog { // similar to the account but works for the car
 		
 		private JTextField CarModTextField;
 		public Admincar() {
@@ -326,7 +327,7 @@ public class Adminpage extends JFrame{
 			CarsTab.setBounds(171, 10, 45, 13);
 			getContentPane().add(CarsTab);
 			
-			JButton CarsAdd = new JButton("Add");
+			JButton CarsAdd = new JButton("Add");// same add as above but presents a JDialog for car
 			CarsAdd.addActionListener(new ActionListener() {
 				
 				@Override
@@ -341,7 +342,7 @@ public class Adminpage extends JFrame{
 			CarsAdd.setBounds(289, 81, 85, 21);
 			getContentPane().add(CarsAdd);
 			
-			JButton CarsDelete = new JButton("Delete");
+			JButton CarsDelete = new JButton("Delete");// same delete as above but takes an index
 			CarsDelete.addActionListener(new ActionListener() {
 
 				
@@ -400,7 +401,7 @@ public class Adminpage extends JFrame{
 		}
 	
 	}
-	 public class AdminAddCar extends JDialog {
+	 public class AdminAddCar extends JDialog { // this comes when we click the add button in car
 			private JTextField ManufacturerTextField;
 			private JTextField NameTextField;
 			private JTextField ModelTextField;
@@ -453,7 +454,7 @@ public class Adminpage extends JFrame{
 				SeatsTextField.setBounds(196, 173, 154, 19);
 				getContentPane().add(SeatsTextField);
 				
-				JButton AddCarBtn = new JButton("Add");
+				JButton AddCarBtn = new JButton("Add");// this executes the car add button purpose
 				AddCarBtn.addActionListener(new ActionListener() {
 					
 					
@@ -514,7 +515,7 @@ public class Adminpage extends JFrame{
 			
 	 }
 	//this is a JDialog class
-	 class Adminbills extends JDialog {
+	 class Adminbills extends JDialog { // out of scope
 		 JTextArea BillTextArea;
 		private JTextField BillModTextField;
 		public Adminbills() {

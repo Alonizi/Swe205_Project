@@ -1,4 +1,4 @@
-
+// this class is to present the user with the confirmation that he bought the car
 public class Payment {
 	private Car car;
 	private Account acc;

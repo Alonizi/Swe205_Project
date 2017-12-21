@@ -14,6 +14,8 @@ import java.util.InputMismatchException;
 import java.awt.Component;
 import java.awt.Color;
 import java.util.ArrayList; 
+// this is one of the 3 main GUI classes 
+// this one is responsible for what the user can see when he logs in from the login screen
 
 public class MainPage extends JFrame {
 	private JTextField txtSearchForCar;
@@ -26,10 +28,11 @@ public class MainPage extends JFrame {
 	JLabel totalPrice, finalPrice, discountValue;
 	int computePrice = 0, computeFinalPrice = 0;
 	ArrayList<Car> cartCars= new ArrayList<Car>(); 
+	
 	public MainPage() {
 		uc= new userCart();
 		setSize(700,700);
-		db.readDatabaseFiles();
+		db.readDatabaseFiles(); // here we start by reading our database
 		getContentPane().setBackground(UIManager.getColor("ToolTip.background"));
 		getContentPane().setLayout(null);
 		
@@ -37,7 +40,7 @@ public class MainPage extends JFrame {
 		txtSearchForCar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-txtSearchForCar.setText("");
+				txtSearchForCar.setText("");
 			}
 		});
 		txtSearchForCar.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -74,7 +77,8 @@ txtSearchForCar.setText("");
 			
 				
 			}
-		});
+		}); // here is the search button which shows the user the name of the cars he search for
+		
 		Search.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -102,6 +106,7 @@ txtSearchForCar.setText("");
 		ResultsPAnel.add(LinesLabel);
 		resultArea.setEditable(false);
 		resultArea.setFont(new Font("Times New Roman", Font.BOLD, 22));
+		// this is the area in which the user can see the cars in our database
 		for(int i=0;i<db.cars.size();i++){
 			resultArea.setText(resultArea.getText()+"\n"+(i+1)+"- "+db.cars.get(i).toString()+"\n");
 			
@@ -112,7 +117,7 @@ txtSearchForCar.setText("");
 		scroll.setBounds(0, 0, 599, 415);
 		ResultsPAnel.add(scroll);
 		
-		JButton HomeButton = new JButton("Home");
+		JButton HomeButton = new JButton("Home");// home is used to update the screen
 		HomeButton.addActionListener(new ActionListener() {
 			
 			
@@ -131,7 +136,7 @@ txtSearchForCar.setText("");
 		HomeButton.setBounds(517, 0, 167, 75);
 		getContentPane().add(HomeButton);
 		
-		JButton CartButton = new JButton("Cart");
+		JButton CartButton = new JButton("Cart");// the cart button takes the user to a new JDialog
 		CartButton.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent arg0) {
@@ -145,12 +150,12 @@ txtSearchForCar.setText("");
 		CartButton.setBounds(189, 0, 167, 75);
 		getContentPane().add(CartButton);
 		
-		JButton ReviewButton = new JButton("Review");
+		JButton ReviewButton = new JButton("Review");//out of scope
 		ReviewButton.setFont(new Font("Times New Roman", Font.ITALIC, 16));
 		ReviewButton.setBounds(352, 0, 167, 75);
 		getContentPane().add(ReviewButton);
 		
-		JMenuBar menuBar = new JMenuBar();
+		JMenuBar menuBar = new JMenuBar();//this one has the logout
 		menuBar.setBounds(0, 0, 69, 22);
 		getContentPane().add(menuBar);
 		
@@ -158,7 +163,7 @@ txtSearchForCar.setText("");
 		mnAccount.setForeground(Color.BLUE);
 		menuBar.add(mnAccount);
 		
-		JMenuItem Settingmenuitem = new JMenuItem("Setting");
+		JMenuItem Settingmenuitem = new JMenuItem("Setting");//out of scope
 		mnAccount.add(Settingmenuitem);
 		
 		JMenuItem Logoutmenuitem = new JMenuItem("Logout");
@@ -174,7 +179,7 @@ txtSearchForCar.setText("");
 		
 	
 		
-		JButton ResetButton = new JButton("Reset");
+		JButton ResetButton = new JButton("Reset");// this button displays the car database after searching
 		ResetButton.addActionListener(new ActionListener() {
 			
 			
@@ -203,7 +208,7 @@ Addtextindex.setText("");
 		Addtextindex.setColumns(10);
 		
 
-		JButton AddButton = new JButton("Add");
+		JButton AddButton = new JButton("Add");// this button adds the selected car to the cart
 		AddButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -211,15 +216,7 @@ Addtextindex.setText("");
 				uc.setVisible(true);
 		int CarNum = Integer.parseInt(Addtextindex.getText());
 			db.updateDatabaseFiles();
-		/*	
-			for(int i=0;i<db.cars.size();i++) {
-				if(CarNum == db.cars.get(i).CN) {
-					textArea.setText(textArea.getText()+"\n"+db.cars.get(i).toString());
-					computePrice += db.cars.get(i).price;
-					totalPrice.setText("" + computePrice);
-					
-				}
-			}*/
+		
 			for(int i=0;i<db.cars.size();i++) {
 				if(CarNum == db.cars.get(i).CN ) {
 					if(db.cars.get(i).isRentable) {
@@ -261,7 +258,7 @@ Addtextindex.setText("");
 			}
 		});
 	}
-	class userCart extends JDialog {
+	class userCart extends JDialog {// this class is viewed after the user press the Cart Button
 		private JTextField deleteTextArea;
 		public userCart() {
 			setSize(400,400);
@@ -284,7 +281,7 @@ Addtextindex.setText("");
 			cartscroll.setBounds(10, 50, 248, 206);
 			getContentPane().add(cartscroll);
 			
-			JButton deleteItem = new JButton("Delete");
+			JButton deleteItem = new JButton("Delete");// this Button removes the selected car from the cart
 			deleteItem.addActionListener(new ActionListener() { 
 				 
 		        public void actionPerformed(ActionEvent arg0) { 
@@ -342,7 +339,7 @@ Addtextindex.setText("");
 			finalPrice.setBounds(143, 335, 115, 13);
 			getContentPane().add(finalPrice);
 			
-			JButton buyButton = new JButton("Buy");
+			JButton buyButton = new JButton("Buy");// the buy button shows that the user has finished the payment
 			buyButton.addActionListener(new ActionListener() {
 				
 				@Override

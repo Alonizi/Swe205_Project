@@ -1,7 +1,8 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.*;
-
+// this class responsible for our inventory 
+// it holds all the information regarding accounts,cars, and bills.
 public class DataBase {
 	ArrayList<Car> cars;
 	ArrayList<Account> accounts;

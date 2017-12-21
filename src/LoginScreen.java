@@ -21,7 +21,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.ActionEvent;
-
+//this class is the main frontier of our system where the user login/signup and the admin sign up
+// and there is also the password help
 public class LoginScreen  extends JFrame{
 	 static DataBase db = new DataBase();
 
@@ -64,7 +65,7 @@ public class LoginScreen  extends JFrame{
 			}
 			
 			@Override
-			public void keyPressed(KeyEvent e) {
+			public void keyPressed(KeyEvent e) { // this is made to allow the user to press enter to log in
 				if(e.getKeyCode()== KeyEvent.VK_ENTER) {
 					boolean logged = false;
 					String username = UsernameFeild.getText();
@@ -109,7 +110,7 @@ public class LoginScreen  extends JFrame{
 			}
 			
 			@Override
-			public void keyPressed(KeyEvent e) {
+			public void keyPressed(KeyEvent e) {// same one but for the admin
 				if(e.getKeyCode()== KeyEvent.VK_ENTER) {
 					boolean logged = false;
 					String username = UsernameFeild.getText();
@@ -139,7 +140,7 @@ public class LoginScreen  extends JFrame{
 		PasswordFeild.setColumns(10);
 		
 		JButton btnLogin = new JButton("Login");
-		btnLogin.addActionListener(new ActionListener() {
+		btnLogin.addActionListener(new ActionListener() {// this button takes you to the user main page or the admin page
 			
 			public void actionPerformed(ActionEvent arg0) {
 				boolean logged = false;
@@ -167,7 +168,7 @@ public class LoginScreen  extends JFrame{
 		btnLogin.setBounds(308, 550, 139, 52);
 		getContentPane().add(btnLogin);
 		
-		JButton btnSignUp = new JButton("Sign Up");
+		JButton btnSignUp = new JButton("Sign Up");// this button allows the user to register a new account
 		btnSignUp.addActionListener(new ActionListener() {
 			
 			@Override
@@ -234,7 +235,6 @@ public class LoginScreen  extends JFrame{
 									String paymentMethod = AddPaymentMethodTextField.getText();
 									String address = AddAddressTextfield.getText();
 									String type = AddTypeTextField.getText();
-									//AdminAccountAdd acad = 
 									boolean isAvailable = false;
 									for(int i = 0; i < db.accounts.size(); i++)
 										if(db.accounts.get(i).username.equalsIgnoreCase(username)) {

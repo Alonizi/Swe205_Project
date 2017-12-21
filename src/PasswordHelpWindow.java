@@ -4,7 +4,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-
+// this is class was made to help the people remember their password
 public class PasswordHelpWindow extends JFrame {
 	private JTextField textField;
 	public PasswordHelpWindow() {
