@@ -17,7 +17,7 @@ public class DataBase {
 	}
 	
 	public void readDatabaseFiles(){
-		// TO BE DONE LATER ! 
+		 
 		try{
 		int i=0;
 		FileInputStream carinstream = new FileInputStream("cars.txt");
@@ -28,19 +28,7 @@ public class DataBase {
 		Scanner mybillfile = new Scanner(billinstream);
 		while(mycarfile.hasNext()){
 			cars.add(new Car(mycarfile.next(), mycarfile.next(), mycarfile.nextInt(), mycarfile.nextInt(), mycarfile.next(), mycarfile.nextBoolean(), mycarfile.nextBoolean(), mycarfile.nextBoolean(), mycarfile.next(),mycarfile.nextInt()));
-//i++;
-//System.out.println(i);
-			
-/*			System.out.println(mycarfile.next());
-			System.out.println(mycarfile.next());
-			System.out.println(mycarfile.nextInt());
-			System.out.println(mycarfile.nextInt());
-			System.out.println(mycarfile.next());
-			System.out.println(mycarfile.nextBoolean());
-			System.out.println(mycarfile.nextBoolean());
-			System.out.println(mycarfile.nextBoolean());
-			System.out.println(mycarfile.next());
-			System.out.println(mycarfile.nextInt());*/
+
 		}
 		for( i=0;i<cars.size();i++)
 			cars.get(i).CN = (i+1);
