@@ -271,8 +271,7 @@ public class Adminpage extends JFrame{
 						String password = AddPasswordTextField.getText();						
 						String paymentMethod = AddPaymentMethodTextField.getText();
 						String address = AddAddressTextfield.getText();
-						String type = AddTypeTextField.getText();
-						//AdminAccountAdd acad = 
+						String type = AddTypeTextField.getText(); 
 						boolean isAvailable = false;
 						for(int i = 0; i < db.accounts.size(); i++)
 							if(db.accounts.get(i).username.equalsIgnoreCase(username)) {
