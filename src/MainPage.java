@@ -258,12 +258,15 @@ Addtextindex.setText("");
 			getContentPane().add(labelCart);
 			
 
-			 textArea = new JTextArea();
-			textArea.setBounds(10, 50, 248, 206);
-			JScrollPane scroll = new JScrollPane(resultArea);
-			scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-			scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-			getContentPane().add(textArea);
+			 textArea = new JTextArea("");
+			//textArea.setBounds(10, 50, 248, 206);
+			 textArea.setEditable(false);
+			 textArea.setFont(new Font("Times New Roman", Font.BOLD, 15));
+			JScrollPane cartscroll = new JScrollPane(textArea);
+			cartscroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+			cartscroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+			cartscroll.setBounds(10, 50, 248, 206);
+			add(cartscroll);
 			
 			JButton deleteItem = new JButton("Delete");
 			deleteItem.setFont(new Font("Times New Roman", Font.ITALIC, 14));
