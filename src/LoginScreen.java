@@ -1,6 +1,9 @@
 import javax.swing.JFrame;
+
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+
+
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 
@@ -9,6 +12,8 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -163,6 +168,121 @@ public class LoginScreen  extends JFrame{
 		getContentPane().add(btnLogin);
 		
 		JButton btnSignUp = new JButton("Sign Up");
+		btnSignUp.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				  class UserAccountAdd extends JDialog {
+						private JTextField AddUsernameTextField;
+						private JTextField AddPasswordTextField;
+						private JTextField AddPaymentMethodTextField;
+						private JTextField AddAddressTextfield;
+						private JTextField AddTypeTextField;
+						public UserAccountAdd() {
+							getContentPane().setLayout(null);
+							setSize(400, 400);
+							setResizable(false);
+							JLabel AddUsernameLabel = new JLabel("Username");
+							AddUsernameLabel.setBounds(72, 78, 74, 13);
+							getContentPane().add(AddUsernameLabel);
+							
+							JLabel AddPasswordLabel = new JLabel("Password");
+							AddPasswordLabel.setBounds(72, 110, 74, 13);
+							getContentPane().add(AddPasswordLabel);
+							
+							JLabel AddPaymentMethodLabel = new JLabel("Payment Method");
+							AddPaymentMethodLabel.setBounds(72, 142, 115, 13);
+							getContentPane().add(AddPaymentMethodLabel);
+							
+							JLabel AddAdressLabel = new JLabel("Address");
+							AddAdressLabel.setBounds(72, 176, 74, 13);
+							getContentPane().add(AddAdressLabel);
+							
+							JLabel AdminAddLabel = new JLabel("Adding Account");
+							AdminAddLabel.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 16));
+							AdminAddLabel.setBounds(142, 10, 149, 19);
+							getContentPane().add(AdminAddLabel);
+							
+							AddUsernameTextField = new JTextField();
+							AddUsernameTextField.setBounds(197, 75, 154, 19);
+							getContentPane().add(AddUsernameTextField);
+							AddUsernameTextField.setColumns(10);
+							
+							AddPasswordTextField = new JTextField();
+							AddPasswordTextField.setBounds(197, 107, 154, 19);
+							getContentPane().add(AddPasswordTextField);
+							AddPasswordTextField.setColumns(10);
+							
+							AddPaymentMethodTextField = new JTextField();
+							AddPaymentMethodTextField.setBounds(197, 139, 154, 19);
+							getContentPane().add(AddPaymentMethodTextField);
+							AddPaymentMethodTextField.setColumns(10);
+							
+							AddAddressTextfield = new JTextField();
+							AddAddressTextfield.setBounds(197, 173, 154, 19);
+							getContentPane().add(AddAddressTextfield);
+							AddAddressTextfield.setColumns(10);
+							
+							JButton AdminAddAccountBtn = new JButton("Add");
+							AdminAddAccountBtn.addActionListener(new ActionListener() {
+								
+								
+								public void actionPerformed(ActionEvent arg0) {
+									
+									String username = AddUsernameTextField.getText();
+									String password = AddPasswordTextField.getText();						
+									String paymentMethod = AddPaymentMethodTextField.getText();
+									String address = AddAddressTextfield.getText();
+									String type = AddTypeTextField.getText();
+									//AdminAccountAdd acad = 
+									boolean isAvailable = false;
+									for(int i = 0; i < db.accounts.size(); i++)
+										if(db.accounts.get(i).username.equalsIgnoreCase(username)) {
+											isAvailable=true;
+										}
+											
+									if (isAvailable) {
+										dispose();
+										UserAccountAdd x = new UserAccountAdd();
+										JOptionPane.showMessageDialog(x, "User already exists!");
+											x.dispose();
+									}
+									else {
+									db.accounts.add(new Account(username, password, address, paymentMethod, type));
+									db.updateDatabaseFiles();
+									dispose();
+
+									}
+								
+									
+								}
+								
+								
+							});
+
+							AdminAddAccountBtn.setFont(new Font("Times New Roman", Font.ITALIC, 14));
+							AdminAddAccountBtn.setBounds(233, 267, 85, 21);
+							getContentPane().add(AdminAddAccountBtn);
+							
+							AddTypeTextField = new JTextField();
+							AddTypeTextField.setColumns(10);
+							AddTypeTextField.setText("User");
+							AddTypeTextField.setEditable(false);
+							AddTypeTextField.setBounds(197, 205, 154, 19);
+							getContentPane().add(AddTypeTextField);
+							
+							JLabel AddTypeLabel = new JLabel("Type");
+							AddTypeLabel.setBounds(72, 208, 74, 13);
+							getContentPane().add(AddTypeLabel);
+							setVisible(true);
+						}
+						
+			
+				  }
+					new UserAccountAdd().setVisible(true);
+				
+			}
+		});
 		btnSignUp.setBounds(481, 550, 139, 52);
 		getContentPane().add(btnSignUp);
 		
