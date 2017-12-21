@@ -112,8 +112,11 @@ public class Car {
 
     @Override
 	public String toString() {
-		return  manufacture + "  ,"+ carName + " ,"+ model + " ," + color+" ,"+price+" ---------CAR#: "+CN;
-	}
+    	if(isRentable)
+		return  manufacture + "  ,"+ carName + " ,"+ model + " ," + color+" ,"+price+ "  	Ready to Rent" +" ---------CAR#: "+CN;
+		return  manufacture + "  ,"+ carName + " ,"+ model + " ," + color+" ,"+price+ "  	Rented" +" ---------CAR#: "+CN;
+
+    }
 
 	public void setRentable(boolean rentable) {
         isRentable = rentable;

@@ -1,6 +1,7 @@
 
 
 import javax.swing.*;
+import javax.swing.text.html.HTMLDocument.Iterator;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -116,6 +117,7 @@ txtSearchForCar.setText("");
 			
 			
 			public void actionPerformed(ActionEvent arg0) {
+				resultArea.setText(" ");
 				resultArea.setFont(new Font("Times New Roman", Font.BOLD, 22));
 				for(int i=0;i<db.cars.size();i++){
 					resultArea.setText(resultArea.getText()+"\n"+(i+1)+"- "+db.cars.get(i).toString()+"\n");
@@ -177,6 +179,7 @@ txtSearchForCar.setText("");
 			
 			
 			public void actionPerformed(ActionEvent arg0) {
+				resultArea.setText(" ");
 				resultArea.setFont(new Font("Times New Roman", Font.BOLD, 22));
 				for(int i=0;i<db.cars.size();i++){
 					resultArea.setText(resultArea.getText()+"\n"+(i+1)+"- "+db.cars.get(i).toString()+"\n");
@@ -218,13 +221,19 @@ Addtextindex.setText("");
 				}
 			}*/
 			for(int i=0;i<db.cars.size();i++) {
-				if(CarNum == db.cars.get(i).CN) {
+				if(CarNum == db.cars.get(i).CN ) {
+					if(db.cars.get(i).isRentable) {
 					cartCars.add(db.cars.get(i));
 			
 			textArea.setText(textArea.getText()+"\n"+db.cars.get(i).toString());
 				computePrice += db.cars.get(i).price;
 				totalPrice.setText("" + computePrice);
 				}
+					else {
+						JOptionPane.showMessageDialog(uc, "The Selected Car is Already Rented");
+					}
+				}
+				
 			}
 			computeFinalPrice = computePrice - (Integer.parseInt(discountValue.getText()) / 100); 
 			finalPrice.setText(computeFinalPrice+"");
@@ -334,6 +343,22 @@ Addtextindex.setText("");
 			getContentPane().add(finalPrice);
 			
 			JButton buyButton = new JButton("Buy");
+			buyButton.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					textArea.setText("  ..... "+computeFinalPrice+" Riyal. "+"Payment Done Sucessfully ");
+					JOptionPane.showMessageDialog(uc, "Thank You For Buying From < Zero2Sixty>");
+					for(int i=0 ;i<db.cars.size();i++)
+						for(int j=0;j<cartCars.size();j++)
+							if(cartCars.get(j).CN == db.cars.get(i).CN) {
+								db.cars.get(i).isRentable = false;
+								db.bills.add(new Bill(db.bills.size()+1, cartCars.toString(), "Not Coded Yet", 1, computeFinalPrice));
+							}
+				db.updateDatabaseFiles();
+				computePrice=0;
+				}
+			});
 			buyButton.setBackground(Color.GREEN);
 			buyButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
